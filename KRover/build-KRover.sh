@@ -1,0 +1,16 @@
+make clean
+make -j`nproc`
+echo '------'
+echo '------'
+echo '------'
+echo '------'
+echo '------'
+echo '------'
+echo '------'
+echo '------'
+echo '------'
+echo '------'
+echo '------'
+cd loader
+make clean
+make -j8
