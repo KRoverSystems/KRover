@@ -1,0 +1,12 @@
+Package: linux-image-5.3.18+-dbg
+Source: linux-5.3.18+
+Version: 5.3.18+-1
+Architecture: amd64
+Maintainer: neo <neo@zion>
+Installed-Size: 5911765
+Section: debug
+Priority: optional
+Homepage: http://www.kernel.org/
+Description: Linux kernel debugging symbols for 5.3.18+
+ This package will come in handy if you need to debug the kernel. It provides
+ all the necessary debug symbols for the kernel and its modules.

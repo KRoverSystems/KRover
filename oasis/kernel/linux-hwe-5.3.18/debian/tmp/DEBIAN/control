@@ -1,0 +1,12 @@
+Package: linux-image-5.3.18+
+Source: linux-5.3.18+
+Version: 5.3.18+-1
+Architecture: amd64
+Maintainer: neo <neo@zion>
+Installed-Size: 253155
+Section: kernel
+Priority: optional
+Homepage: http://www.kernel.org/
+Description: Linux kernel, version 5.3.18+
+ This package contains the Linux kernel, modules and corresponding other
+ files, version: 5.3.18+.

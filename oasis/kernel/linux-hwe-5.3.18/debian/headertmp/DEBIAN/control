@@ -1,0 +1,14 @@
+Package: linux-libc-dev
+Source: linux-5.3.18+
+Version: 5.3.18+-1
+Architecture: amd64
+Maintainer: neo <neo@zion>
+Installed-Size: 5488
+Provides: linux-kernel-headers
+Section: devel
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.kernel.org/
+Description: Linux support headers for userspace development
+ This package provides userspaces headers from the Linux kernel.  These headers
+ are used by the installed headers for GNU glibc and other system libraries.

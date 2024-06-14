@@ -1,0 +1,35 @@
+Source: linux-5.3.18+
+Section: kernel
+Priority: optional
+Maintainer: neo <neo@zion>
+Build-Depends: bc, rsync, kmod, cpio, bison, flex | flex:native , , libssl-dev:native
+Homepage: http://www.kernel.org/
+
+Package: linux-image-5.3.18+
+Architecture: amd64
+Description: Linux kernel, version 5.3.18+
+ This package contains the Linux kernel, modules and corresponding other
+ files, version: 5.3.18+.
+
+Package: linux-headers-5.3.18+
+Architecture: amd64
+Description: Linux kernel headers for 5.3.18+ on amd64
+ This package provides kernel header files for 5.3.18+ on amd64
+ .
+ This is useful for people who need to build external modules
+
+Package: linux-libc-dev
+Section: devel
+Provides: linux-kernel-headers
+Architecture: amd64
+Description: Linux support headers for userspace development
+ This package provides userspaces headers from the Linux kernel.  These headers
+ are used by the installed headers for GNU glibc and other system libraries.
+Multi-Arch: same
+
+Package: linux-image-5.3.18+-dbg
+Section: debug
+Architecture: amd64
+Description: Linux kernel debugging symbols for 5.3.18+
+ This package will come in handy if you need to debug the kernel. It provides
+ all the necessary debug symbols for the kernel and its modules.

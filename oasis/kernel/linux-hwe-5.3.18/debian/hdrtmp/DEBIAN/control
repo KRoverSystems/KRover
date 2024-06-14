@@ -1,0 +1,13 @@
+Package: linux-headers-5.3.18+
+Source: linux-5.3.18+
+Version: 5.3.18+-1
+Architecture: amd64
+Maintainer: neo <neo@zion>
+Installed-Size: 99779
+Section: kernel
+Priority: optional
+Homepage: http://www.kernel.org/
+Description: Linux kernel headers for 5.3.18+ on amd64
+ This package provides kernel header files for 5.3.18+ on amd64
+ .
+ This is useful for people who need to build external modules

@@ -1,0 +1,5 @@
+linux-5.3.18+_5.3.18+-1_amd64.buildinfo kernel optional
+linux-headers-5.3.18+_5.3.18+-1_amd64.deb kernel optional
+linux-image-5.3.18+-dbg_5.3.18+-1_amd64.deb debug optional
+linux-image-5.3.18+_5.3.18+-1_amd64.deb kernel optional
+linux-libc-dev_5.3.18+-1_amd64.deb devel optional
