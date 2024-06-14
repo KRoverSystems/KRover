@@ -1,0 +1,82 @@
+debian/headertmp/usr/include/linux/kvm.h:/* Jiaqi */
+debian/headertmp/usr/include/linux/kvm.h:/* /Jiaqi */
+debian/hdrtmp/usr/src/linux-headers-5.3.18+/include/uapi/linux/kvm.h:/* Jiaqi */
+debian/hdrtmp/usr/src/linux-headers-5.3.18+/include/uapi/linux/kvm.h:/* /Jiaqi */
+debian/hdrtmp/usr/src/linux-headers-5.3.18+/arch/x86/include/asm/kvm_host.h:    /* Jiaqi */
+debian/hdrtmp/usr/src/linux-headers-5.3.18+/arch/x86/include/asm/kvm_host.h:    /* /Jiaqi */
+include/uapi/linux/kvm.h:/* Jiaqi */
+include/uapi/linux/kvm.h:/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/*  /Jiaqi*/
+arch/x86/kvm/vmx/vmx.c:/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:		/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	// /* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi, recover host syscall entry in MSR */
+arch/x86/kvm/vmx/vmx.c:	/* /Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* Jiaqi */
+arch/x86/kvm/vmx/vmx.c:	/* /Jiaqi */
+arch/x86/include/asm/kvm_host.h:    /* Jiaqi */
+arch/x86/include/asm/kvm_host.h:    /* /Jiaqi */
+arch/x86/mm/fault.c:        // /* Jiaqi */
+arch/x86/mm/fault.c:        // /* /Jiaqi */
+arch/x86/mm/fault.c:        // /* Jiaqi */
+arch/x86/mm/fault.c:        // /* /Jiaqi */
+arch/x86/mm/fault.c:        // /* Jiaqi */    
+arch/x86/mm/fault.c:        // /* /Jiaqi */
+arch/x86/mm/fault.c:        // /* Jiaqi */    
+arch/x86/mm/fault.c:        // /* /Jiaqi */
+arch/x86/mm/fault.c:        // /* Jiaqi */    
+arch/x86/mm/fault.c:        // /* /Jiaqi */
+arch/x86/mm/fault.c:        // /* Jiaqi */    
+arch/x86/mm/fault.c:        // /* /Jiaqi */
+arch/x86/mm/fault.c:    // /* Jiaqi*/
+arch/x86/mm/fault.c:    /* /Jiaqi */
+virt/kvm/imee.h:/* Jiaqi */
+virt/kvm/imee.h:/* /Jiaqi */
+virt/kvm/imee.h:// /* Jiaqi */
+virt/kvm/imee.h:/* Jiaqi */
+virt/kvm/kvm_main.c:/* Jiaqi */
+virt/kvm/kvm_main.c:/* /Jiaqi */
+virt/kvm/kvm_main.c:    /* Jiaqi */
+virt/kvm/kvm_main.c:        /* Jiaqi */
+virt/kvm/kvm_main.c:    /* /Jiaqi*/
+virt/kvm/:w:/* Jiaqi */
+virt/kvm/:w:/* /Jiaqi */
+virt/kvm/:w:// /* Jiaqi */
+virt/kvm/:w:/* Jiaqi */
+virt/kvm/:w:/* /Jiaqi */
+virt/kvm/:w://     /* Jiaqi */
+virt/kvm/:w://     /*  /Jiaqi*/
+virt/kvm/:w://     /* Jiaqi */
+virt/kvm/:w://     /* Jiaqi */
+virt/kvm/:w:    /* Jiaqi */
+virt/kvm/:w:    /*  /Jiaqi*/
+virt/kvm/:w:/* change type from u32 to unsigned long by Jiaqi */
+virt/kvm/:w:/* change type from u32 to unsigned long by Jiaqi */
+virt/kvm/:w:/* Jiaqi */
+virt/kvm/:w:/* Jiaqi */
+virt/kvm/:w:// extern added by Jiaqi
+usr/include/linux/kvm.h:/* Jiaqi */
+usr/include/linux/kvm.h:/* /Jiaqi */
