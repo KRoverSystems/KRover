@@ -8,7 +8,7 @@ Z3_INC_PATH		:= ${Z3_PATH}/include
 Z3_LIB_PATH		:= ${Z3_PATH}/libz3.so
 KSE_PATH 		:= /<PATH-TO>/KRover
 
-LOADER_PATH		:= /<PATH-TO>/u-loader/install
+LOADER_PATH		:= /<PATH-TO>/oasis/u-loader/install
 STDLIB_PATH 	:= ${LOADER_PATH}/lib
 STDINC_PATH 	:= ${LOADER_PATH}/include
 
