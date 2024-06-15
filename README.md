@@ -1,116 +1,120 @@
-# KRover
-KRover is a Symbolic Execution Engine for Dynamic Kernel Analysis. This document will guide you through the setup of the necessary infrastructure and dependant systems needed to for the execution of KRover. Happy KRoving !!!
+#  ⌘ KRover ⌘
+KRover is a Symbolic Execution Engine for Dynamic Kernel Analysis. This document will guide you through the setup of the necessary infrastructure and dependent systems needed for the execution of KRover. 
 
-# Included packages
+Happy KRoving !!!
+
+## Included packages
 This package includes the following software packages.
 ### KRover: 
 1. KRover symbolic execution engine.
 ### oasis: 
-OASIS infrastructure on which KRover is executed. OASIS consists of the following components.
+KRover is executed in OASIS infrastructure. OASIS consists of the following components.
 
-2. kernel : A lnux kernel with modified KVM.
-3. k-loader : A LKM that acts as a kernel loader.
-4. u-loader : Modified libc to satisfy specific loading/address space requirements.
-5. oasis-lib : A collection of binaries enabling specific OASIS features such as EFI: execution flow instruentation.
-6. launcher : System launcher, launches oasis and KRover.
+2. kernel: A Linux kernel with modified KVM.
+3. k-loader: A LKM that acts as a kernel loader.
+4. u-loader: Modified libc to satisfy specific loading/address space requirements.
+5. oasis-lib: A collection of binaries enabling specific OASIS features such as EFI: execution flow instrumentation.
+6. launcher: System launcher, launches oasis and KRover.
+#
+#
+# ⌘ Instructions for system setup ⌘
+KRover executes on OASIS infrastructure. Thus, the first step is to set up the OASIS infrastructure. If you need more information about OASIS design and features, refer to our OASIS paper: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces(IEEE SP21)".
 
-# Instructions for system setup
-KRover executes on OASIS instrcture. Thus, the first step is to setup the OASIS infrastructure. If you need more information abount OASIS design, features, refer to our OASIS paper: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces(IEEE SP21)".
+## 1. Platform
+OASIS needs to run on a bare-metal machine with the customized kernel specified above. The target kernel which will be analyzed using KRover would be executed in a VM. We recommend a host machine with Ubuntu. If your current Ubuntu does not match with the following requirements or you do not want to disturb your current working environment, you can consider creating a new partition and installing a separate Ubuntu OS. Then your machine becomes a dual-boot Ubuntu system, do the following things in the new Ubuntu. It's also okay to skip the step if there is no conflict.
 
-## Platform
-OASIS needs to run on a bare-metal machine with the customzed kernel specified above. The target kernel which will be analyzed using KRover would be executed in a VM. We recomment a host machine with Ubuntu. If your current Ubuntu does not match with the following requirements or you do not want to disturb your current working environment, you can consider creating a new partition and installing a separate Ubuntu OS. Then your machine becomes a dual-boot Ubuntu system, do the following things in the new Ubuntu. It's also okay to skip the step if there is no conflict.
-
-## Requirements
-1. Host OS: Ubuntu 18.04; Kernel version: linux 5.4.X.
+## 2. Requirements
+1. Host OS: Ubuntu 18.04; Kernel version: Linux 5.4.X.
 2. binutils: 2.30
 3. gcc:7.5.0
-4. [Install kvm and its related virt-manager toolchain](https://linuxize.com/post/how-to-install-kvm-on-ubuntu-18-04/)
+4. [Install KVM and its related virt-manager toolchain](https://linuxize.com/post/how-to-install-kvm-on-ubuntu-18-04/)
 
-## Setup a guest VM
-1. [Install a VM with linux 5.4.X using virt-manager](https://www.tecmint.com/create-virtual-machines-in-kvm-using-virt-manager/4/)
-2. Configure the guestVM: disable ASLR permanently
+## 3. Setup a guest VM
+3.1. [Install a VM with Linux 5.4.X using virt-manager](https://www.tecmint.com/create-virtual-machines-in-kvm-using-virt-manager/4/)
+
+3.2. Configure the guest VM: disable ASLR permanently
 [reference](https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization)
 Add a file /etc/sysctl.d/01-disable-aslr.conf containing:
 ```
 kernel.randomize_va_space = 0
 ```
-3. Configure the guestVM: disable pti through boot option
+3.3. Configure the guest VM: disable pti through the boot option
 add 'nopti' after 'quite splash' in /etc/default/grub, then 
 ```
 sudo update-grub2
 ```
 
-## Clone the KRover repo on to host.
+## 4. Clone the KRover repo onto the host.
 ```
 git clone https://github.com/KRoverSystems/KRover.git
 ```
 
-## Building and installing the OASIS kernel.
+## 5. Building and installing the OASIS kernel.
 
-### install the required compilers and other tools
+### 5.1 Install the required compilers and other tools
 ```
 sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev
 ```
 
-### Update oasis-lib path in imee.h
+### 5.2 Update oasis-lib path in imee.h
 Go to oasis/kernel/linux-hwe-5.3.18/virt/kvm/imee.h
 Update the constant, KROVER_OASIS_LIB_PATH accordingly.
 
-### configuring the kernel
+### 5.3 Configuring the kernel
 confirm *CONFIG_X86_SMAP is not set* in the .config file. if *CONFIG_X86_SMAP = y*, change it to *CONFIG_X86_SMAP = n*.
 ```
-cd oasis/kernel/linux-hwe-5.3.18
+cd oasis/kernel/Linux-hwe-5.3.18
 grep CONFIG_X86_SMAP .config
 ```  
 load and save the .config file, then exit.
 ```
 make menuconfig 
 ```
-### compile the linux kernel as debian packages
+### 5.4 Compile the Linux kernel as Debian packages
 ```
 make -j`nproc` deb-pkg
 cd ../ && ls -la
 ```
 There would be four *.deb packages generated.
 
-### install the new kernel
+### 5.5 Install the new kernel
 ```
-sudo dpkg -i linux-image-5.3.18_5.3.18-1_amd64.deb 
-sudo dpkg -i linux-image-5.3.18-dbg_5.3.18-1_amd64.deb
-sudo dpkg -i linux-libc-dev_5.3.18-1_amd64.deb   
-sudo dpkg -i linux-headers-5.3.18_5.3.18-1_amd64.deb 
+sudo dpkg -i Linux-image-5.3.18_5.3.18-1_amd64.deb 
+sudo dpkg -i Linux-image-5.3.18-dbg_5.3.18-1_amd64.deb
+sudo dpkg -i Linux-libc-dev_5.3.18-1_amd64.deb   
+sudo dpkg -i Linux-headers-5.3.18_5.3.18-1_amd64.deb 
 ```
     
-### reboot and enter into the new kernel 5.3.18
-During boot procedure, remember to select Advanced options for ..., then select 5.3.18 kernel, which is the modified oasis kernel we just installed.
-you may choose to update /etc/default/grub or /boot/grub/grub.cfg to make the 5.3.18 as the default kernel whenever reboot, to avoid the above troublesome selectings. 
+### 5.6 Reboot and enter into the new kernel 5.3.18
+During the boot procedure, remember to select Advanced options for ..., then select 5.3.18 kernel, which is the modified oasis kernel we just installed.
+you may choose to update /etc/default/grub or /boot/grub/grub.cfg to make the newly installed 5.3.18 kernel the default kernel whenever rebooting, to avoid the above troublesome selectings. 
 
-### disable ASLR permanently
+### 5.7 Disable ASLR permanently
 [reference](https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization)
 Add a file /etc/sysctl.d/01-disable-aslr.conf containing:
 ```
 kernel.randomize_va_space = 0
 ```
-### disable pti through boot option
+### 5.8 Disable pti through the boot option
 add 'nopti' after 'quite splash' in /etc/default/grub, then 
 ```
 sudo update-grub2
 ```
 
-## Compiling and installing the k-loader
+## 6. Compiling and installing the k-loader
 
-### Create a symbolic link to imee.h in kernel
+### 6.1 Create a symbolic link to imee.h in kernel
 Go to oasis/k-loader/configure.sh and update the path to kernel's imee.h accordingly. 
 execute configure.sh to create a symbolic link to imee.h .
 
-### compile & install
+### 6.2 compile & install
 ```
 make && sudo insmod ld.ko
 ```
 
-## Building and installing the u-loader (Customized linker)
+## 7. Building and installing the u-loader (Customized linker)
 
-### Build then install
+### 7.1 Build then install
 ```
 cd oasis/u-loader/
 mkdir build-glibc
@@ -120,22 +124,22 @@ cd build-glibc
 make -j`nproc` CFLAGS="-O2 -U_FORTIFY_SOURCE -fno-stack-protector"
 make install
 ```
-## oasis-lib
+## 8. Use of oasis-lib
 
-oasis-lib includes a collection of prebuilt binaries in the form of .so files. These are a collection of gates that fascilitate EFI-execution flow switches(Eg: switch between a target kernel thread and KRover). Use the .so files as-is. Re-compiling may change the ofsets between certain functions( or the start offcet of a certain function) within a given .so file causing oasis to malfunction.
+oasis-lib includes a collection of prebuilt binaries in the form of .so files. These are a collection of gates that facilitate EFI-execution flow switches(Eg: switch between a target kernel thread and KRover). Use the .so files as-is. Re-compiling may change the offsets between certain functions( or the start offset of a certain function) within a given .so file causing oasis to malfunction.
 
-## Build the launcher
+## 9. Build the launcher
 
-### Update KRover binary path
+### 9.1 Update KRover binary path
 Go to oasis/launcher/oasis-launcher.c and update the constant, KROVER_PATH accordingly.
-Executable KRover binary named "testtest" should be available in KRover/loader/ directory.
+Once KRover is built later, an executable KRover binary named "testtest" will be available in KRover/loader/ directory.
 Go to oasis/launcher/ and run compile.sh to generate the launcher binary named, oasis-auncher.
 
 
-# Dependant libraries for KRover
-KRover uses dyninst for binary instruction dissassembly and Z3 for constraint evaluation.
+## 10. Install dependent libraries for KRover
+KRover uses Dyninst for binary instruction disassembly and Z3 for constraint evaluation.
 
-## dyninst dependancies
+### 10.1 Dyninst dependencies
 ```
 sudo apt install libiberty-dev
 ```
@@ -144,7 +148,7 @@ sudo apt install libiberty-dev
 sudo apt install texlive-full
 ```
 
-## Build dyninst
+### 10.2 Build dyninst
 ```
         git clone https://github.com/dyninst/dyninst.git
         cd dyninst
@@ -156,80 +160,80 @@ sudo apt install texlive-full
         make install
 ```
 
-## Build Z3
+### 10.3 Build Z3
 
-Download and install Microsoft Z3 version 4.8.14 .
+Download and install Microsoft Z3 version 4.8.14
 Follow the instructions provided by the Z3 team.
 (https://github.com/Z3Prover/z3/tree/z3-4.8.14)
  
-# Building KRover
+## 11. Building KRover
 
-## Update Makefiles
-Update the all missing paths in the two Makefiles in KRover (DYNINST_PATH, Z3_PATH etc.)
+### 11.1 Update Makefiles
+Update all incomplete paths in the two Makefiles in KRover (DYNINST_PATH, Z3_PATH, etc.)
 
-## Update run script
+### 11.2 Update run script
 Update run-Krover.sh with the path to oasis-launcher
 
-## Build KRover
+### 11.3 Build KRover
 ```
 cd KRover
 ./build-KRover.sh
 ```
 KRover executable binary named, testtest will be generated in KRover/loader/ directory.
-
-# Symbolic execution of a syscall handler
+#
+#
+#  ⌘ POC example ⌘
 This is a POC of how you can use KRover to symbolically execute a Linux syscall handler.
 
-## Build target
-We have included a POC target user space program, poc.c in "targets" directory. Copy this into the target guest VM and build the poc.c
+## 1. Build target
+We have included a POC target user space program, poc.c in the "targets" directory. Copy this into the target guest VM and build the poc.c
 ```
 gcc poc.c -o target
 ```
 
-## Extract syscall handler addresses from the guest VM
+## 2. Extract syscall handler addresses from the guest VM
 Execute the following command in the target VM to obtain the list of syscall handler addresses from the target kernel.
 ```
 sudo cat /proc/kallsyms >> ksyms.txt
 ```
-Then, copy the contents of ksyms.txt in to KRover/stc-files/kern_syms.txt .
+Then, copy the contents of ksyms.txt into KRover/stc-files/kern_syms.txt .
 
-## KRover configurations and functionality
-The following details are specific to the execution of the selected poc where we are trying to symbolically execute the getpriority syscall of the target kernel.
+## 3. KRover configurations and functionality
+The following details are specific to the execution of the selected POC where we are trying to symbolically execute the getpriority syscall of the target kernel.
 
-### User analyzer
-The user can leverage KRover as a library to write their own sinple user analyser. A POC analyzer to suppport the symbolic execution of getpriority is included in Analyze.cpp.
+### 3.1 User analyzer
+The user can leverage KRover as a library to write their own simple user analyzer. A POC analyzer to support the symbolic execution of getpriority is included in Analyze.cpp.
 
-### Selection of the syscall
-The simple user analyzer included in Analyze.cpp, supports the symbolic execution of more that 50 system calls. The user can select the syscall handler name in "void CAnalyze::setupScallAnalysis()". To support the POC, we have set the syscall handler name for get_priority by selecting the kernel symbol name "__x64_sys_getpriority" in "void  Analyze::setupScallAnalysis()". The corresponding VA of the syscall handler is available in KRover/stc-files/kern_syms.txt .
+### 3.2 Selection of the syscall
+The sample user analyzer is included in Analyze.cpp, supports the symbolic execution of a selected system call. The user can select the syscall handler name in "void CAnalyze::setupScallAnalysis()". To support the POC, we have set the syscall handler name for get_priority by selecting the kernel symbol name "__x64_sys_getpriority" in "void  Analyze::setupScallAnalysis()". The corresponding VA of the syscall handler is available in KRover/stc-files/kern_syms.txt .
 
-### Installation of the int3 breakpoint 
-The POC user analyzer installs an int3 breakpoint at the start of the getpriority syscall handler in bool CAnalyze::beginAnalysis(ulong addr). The API, "InstallINT3Probe()" is used for this purpose.
+### 3.3 Installation of the int3 breakpoint 
+The POC user analyzer installs an int3 breakpoint at the start of the getpriority syscall handler in bool CAnalyze::beginAnalysis(). The API, "InstallINT3Probe()" is used for this purpose.
 
-### Symbolization
-The POC user analyzer uses "defineSymbolsForScalls()" API to symbolize some syscall arguments passed to the syscall handler of getpriority. KRover supports both register and memory symbols.
+### 3.4 Symbolization
+The POC user analyzer uses the "defineSymbolsForScalls()" API to symbolize some syscall arguments passed to the syscall handler of getpriority. KRover supports both register and memory symbols.
 
-### POC Analysis sequence
-The analysis sequence anabled by the POC user analyzer is as follows.
-1. main.cpp : Once the target thred is captured, controlled is passed to the user analyzer in Analyze.cpp to find the address of the getpriority syscall and install an int3 breakpoint at its start.
-2. main.cpp > to_native : Captured target VM thread is dispatched for naive execution. i.e. the target thread is executed in onsite environment directly on hardware(out of KRover). 
-3. Once the target's native exection reaches the installed int3 breakpoint( at the syscall handler of getpriority), the int3 exception handler(main.cpp > int3_store_context() > int3_handler() ) receives control.
+### 3.5 POC analysis sequence
+The analysis sequence enabled by the POC user analyzer is as follows.
+1. main.cpp : Once the target thread is captured, control is passed to the user analyzer in Analyze.cpp to find the address of the getpriority syscall and install an int3 breakpoint at its start.
+2. main.cpp > to_native(): Captured target VM thread is dispatched for naive execution. i.e. the target thread is executed in the onsite environment directly on the hardware(out of KRover). 
+3. Once the target's native execution reaches the installed int3 breakpoint( at the syscall handler of getpriority), the int3 exception handler(main.cpp > int3_store_context() > int3_handler() ) receives control.
 4. The int3 exception handler, int3_handler() passes control back to the user analyzer.
 "execState->processAt()".
 5. The POC analysis program("CAnalyze::beginAnalysis()" ) dispatches the target thread to thin controller("m_Thin->processFunction(addr)" ) for symbolic execution.
-6. Thin controller single steps the syscall handler and conduct symbolic execution.
-7. The POC analyzer terminates the analysis once the execution reaches the end of the syscall handler( See CAnalyze::onEndOfInsExec() ), and path constrains are provided for the user.
+6. Thin controller single steps the syscall handler and conducts symbolic execution.
+7. The POC analyzer terminates the analysis once the execution reaches the end of the syscall handler( See CAnalyze::onEndOfInsExec() ), and path constraints are provided for the user.
 8. A sample symbolic execution trace for the symbolic execution of the syscall handler of getpriority is available in target/poc_getpriority.trace .
 
-# Executing KRover
-Make sure to have the k-loader installed in advance (If not done already). The execution includes two sequencial steps as follows.
-1. On target VM, Execute the poc target program
+## 3.6 Executing KRover
+Make sure to have the k-loader installed in advance (If not done already). The execution includes two sequential steps as follows.
+1. On the target VM, Execute the poc target program
 Go to the directory of the poc.c,
 ```
 ./target
 ```
-3. Then on host, launch onsite environment and execute KRover as follows.
+2. Next, on the host, launch the onsite environment and execute KRover as follows.
 Go to KRover's directory,
 ```
 ./run-KRover.sh
 ```
-
