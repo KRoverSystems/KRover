@@ -5,8 +5,9 @@ KRover is a Symbolic Execution Engine for Dynamic Kernel Analysis. This document
 This package includes the following software packages.
 ### KRover: 
 1. KRover symbolic execution engine.
-### oasis
+### oasis: 
 OASIS infrastructure on which KRover is executed. OASIS consists of the following components.
+
 2. kernel : A lnux kernel with modified KVM.
 3. k-loader : A LKM that acts as a kernel loader.
 4. u-loader : Modified libc to satisfy specific loading/address space requirements.
@@ -14,7 +15,7 @@ OASIS infrastructure on which KRover is executed. OASIS consists of the followin
 6. launcher : System launcher, launches oasis and KRover.
 
 # Instructions for system setup
-First step is to setup the OASIS infrastructure. If you need more information abount OASIS design, features and EFI, refer to our OASIS paper from SP21: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces".
+KRover executes on OASIS instrcture. Thus, the first step is to setup the OASIS infrastructure. If you need more information abount OASIS design, features, refer to our OASIS paper: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces(IEEE SP21)".
 
 ## Platform
 OASIS needs to run on a bare-metal machine with the customzed kernel specified above. The target kernel which will be analyzed using KRover would be executed in a VM. We recomment a host machine with Ubuntu. If your current Ubuntu does not match with the following requirements or you do not want to disturb your current working environment, you can consider creating a new partition and installing a separate Ubuntu OS. Then your machine becomes a dual-boot Ubuntu system, do the following things in the new Ubuntu. It's also okay to skip the step if there is no conflict.
@@ -220,7 +221,7 @@ The analysis sequence anabled by the POC user analyzer is as follows.
 8. A sample symbolic execution trace for the symbolic execution of the syscall handler of getpriority is available in target/poc_getpriority.trace .
 
 # Executing KRover
-Make sure to have the k-loader installed in advance (If not done already).
+Make sure to have the k-loader installed in advance (If not done already). The execution includes two sequencial steps as follows.
 1. On target VM, Execute the poc target program
 Go to the directory of the poc.c,
 ```
@@ -231,3 +232,4 @@ Go to KRover's directory,
 ```
 ./run-KRover.sh
 ```
+
