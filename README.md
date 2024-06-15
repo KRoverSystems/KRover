@@ -6,7 +6,7 @@ Happy KRoving !!!
 ## Included packages
 This package includes the following software packages.
 ### KRover: 
-1. KRover symbolic execution engine.
+1. KRover: Symbolic execution engine.
 ### oasis: 
 KRover is executed in OASIS infrastructure. OASIS consists of the following components.
 
@@ -21,7 +21,7 @@ KRover is executed in OASIS infrastructure. OASIS consists of the following comp
 KRover executes on OASIS infrastructure. Thus, the first step is to set up the OASIS infrastructure. If you need more information about OASIS design and features, refer to our OASIS paper: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces(IEEE SP21)".
 
 ## 1. Platform
-OASIS needs to run on a bare-metal machine with the customized kernel specified above. The target kernel which will be analyzed using KRover would be executed in a VM. We recommend a host machine with Ubuntu. If your current Ubuntu does not match with the following requirements or you do not want to disturb your current working environment, you can consider creating a new partition and installing a separate Ubuntu OS. Then your machine becomes a dual-boot Ubuntu system, do the following things in the new Ubuntu. It's also okay to skip the step if there is no conflict.
+OASIS needs to run on a bare-metal machine with the customized kernel specified above. The target kernel which will be analyzed using KRover would be executed in a VM. We recommend a host machine with Ubuntu. If your current Ubuntu does not match the following requirements or you do not want to disturb your current working environment, you can consider creating a new partition and installing a separate Ubuntu OS. Then your machine becomes a dual-boot Ubuntu system, do the following things in the new Ubuntu. It's also okay to skip the step if there is no conflict.
 
 ## 2. Requirements
 1. Host OS: Ubuntu 18.04; Kernel version: Linux 5.4.X.
@@ -126,7 +126,14 @@ make install
 ```
 ## 8. Use of oasis-lib
 
+### 8.1 Notes 
 oasis-lib includes a collection of prebuilt binaries in the form of .so files. These are a collection of gates that facilitate EFI-execution flow switches(Eg: switch between a target kernel thread and KRover). Use the .so files as-is. Re-compiling may change the offsets between certain functions( or the start offset of a certain function) within a given .so file causing oasis to malfunction.
+
+### 8.2 Permission update
+add x permission for the data_page file in springboard.
+```
+sudo chmod +x /<PATH-TO>/oasis/oasis-lib/KRover-OASIS-Lib/springboard/data_page
+```
 
 ## 9. Build the launcher
 
@@ -143,21 +150,21 @@ KRover uses Dyninst for binary instruction disassembly and Z3 for constraint eva
 ```
 sudo apt install libiberty-dev
 ```
-    Install cmake version > 3.13
+ Install cmake version > 3.13
 ```
 sudo apt install texlive-full
 ```
 
 ### 10.2 Build dyninst
 ```
-        git clone https://github.com/dyninst/dyninst.git
-        cd dyninst
-        git checkout -b V12 v12.0.0
-        cd ..
-        mkdir dyninst_build && cd dyninst_build
-        cmake ../dyninst -DCMAKE_INSTALL_PREFIX=`pwd`/../install -DSTERILE_BUILD=OFF
-        make -j`nproc`
-        make install
+ git clone https://github.com/dyninst/dyninst.git
+ cd dyninst
+ git checkout -b V12 v12.0.0
+ cd ..
+ mkdir dyninst_build && cd dyninst_build
+ cmake ../dyninst -DCMAKE_INSTALL_PREFIX=`pwd`/../install -DSTERILE_BUILD=OFF
+ make -j`nproc`
+ make install
 ```
 
 ### 10.3 Build Z3

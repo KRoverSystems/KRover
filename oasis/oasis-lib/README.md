@@ -1,2 +1,2 @@
-## OASIS library, a collection of binaries which are part of core oasis supporting EFI.
-User the .so files as-is. Rebuilding will change the binary offsets and affect oasis.
+## OASIS library.
+This is a collection of binaries which are part of core oasis. Use the .so files as-is. Rebuilding may change the function start offsets within .so files and affect oasis.

@@ -1,2 +1,2 @@
-# OASIS
-OASIS is a virtualization based infrastructure for Execution Flow Instrumentation (EFI). It is a KVM based dynamic software analysis infrastructure. This manual guides you through the different components in OASIS and how to setup.
+## OASIS
+OASIS is a virtualization based infrastructure for Execution Flow Instrumentation (EFI). It is a KVM based dynamic software analysis infrastructure.
