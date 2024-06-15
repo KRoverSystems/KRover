@@ -1,0 +1,76 @@
+
+pf.so:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000261 <handle_pf>:
+ 261:	50                   	push   %rax
+ 262:	0f 20 d0             	mov    %cr2,%rax
+ 265:	50                   	push   %rax
+ 266:	52                   	push   %rdx
+ 267:	48 ba ff ff ff ff ff 7e 00 00 	movabs $0x7effffffffff,%rdx
+ 271:	48 39 d0             	cmp    %rdx,%rax
+ 274:	76 2c                	jbe    2a2 <handle_pf+0x41>
+ 276:	48 ba ff ff ff ff 7f 7f 00 00 	movabs $0x7f7fffffffff,%rdx
+ 280:	48 39 d0             	cmp    %rdx,%rax
+ 283:	77 1d                	ja     2a2 <handle_pf+0x41>
+ 285:	48 b8 76 98 ff ff 00 00 00 00 	movabs $0xffff9876,%rax
+ 28f:	0f 01 c1             	vmcall 
+ 292:	48 89 c2             	mov    %rax,%rdx
+ 295:	48 b8 ff ff ff ff 00 00 00 00 	movabs $0xffffffff,%rax
+ 29f:	0f 01 c1             	vmcall 
+ 2a2:	48 8b 54 24 40       	mov    0x40(%rsp),%rdx
+ 2a7:	52                   	push   %rdx
+ 2a8:	48 89 e2             	mov    %rsp,%rdx
+ 2ab:	90                   	nop
+ 2ac:	90                   	nop
+ 2ad:	90                   	nop
+ 2ae:	90                   	nop
+ 2af:	90                   	nop
+ 2b0:	90                   	nop
+ 2b1:	90                   	nop
+ 2b2:	52                   	push   %rdx
+ 2b3:	9c                   	pushfq 
+ 2b4:	48 8b 54 24 40       	mov    0x40(%rsp),%rdx
+ 2b9:	52                   	push   %rdx
+ 2ba:	48 ba b8 5f 90 00 10 7f 00 00 	movabs $0x7f1000905fb8,%rdx
+ 2c4:	48 8b 12             	mov    (%rdx),%rdx
+ 2c7:	52                   	push   %rdx
+ 2c8:	48 cf                	iretq  
+ 2ca:	90                   	nop
+ 2cb:	90                   	nop
+ 2cc:	90                   	nop
+ 2cd:	90                   	nop
+ 2ce:	90                   	nop
+ 2cf:	90                   	nop
+ 2d0:	90                   	nop
+ 2d1:	90                   	nop
+ 2d2:	90                   	nop
+ 2d3:	90                   	nop
+ 2d4:	90                   	nop
+ 2d5:	90                   	nop
+ 2d6:	90                   	nop
+ 2d7:	90                   	nop
+ 2d8:	90                   	nop
+ 2d9:	90                   	nop
+ 2da:	90                   	nop
+ 2db:	90                   	nop
+ 2dc:	90                   	nop
+ 2dd:	90                   	nop
+
+00000000000002de <handle_ve>:
+ 2de:	50                   	push   %rax
+ 2df:	48 b8 89 67 ff ff 00 00 00 00 	movabs $0xffff6789,%rax
+ 2e9:	0f 01 c1             	vmcall 
+ 2ec:	90                   	nop
+ 2ed:	90                   	nop
+ 2ee:	90                   	nop
+ 2ef:	90                   	nop
+ 2f0:	90                   	nop
+ 2f1:	90                   	nop
+ 2f2:	90                   	nop
+ 2f3:	90                   	nop
+ 2f4:	90                   	nop
+ 2f5:	90                   	nop
+ 2f6:	90                   	nop

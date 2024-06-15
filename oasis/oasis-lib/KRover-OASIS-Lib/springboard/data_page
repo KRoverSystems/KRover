@@ -1,0 +1,3368 @@
+uu//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+void re_enter (void);
+asm (" .text");
+asm (" .type    re_enter, @function");
+asm ("re_enter: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d02(%rip), %rcx \n");
+asm ("movq 0x2d03(%rip), %rax \n");
+asm ("movq 0x2d04(%rip), %rsp \n");
+
+asm ("jmpq *0x2d06(%rip) \n");
+
+// asm ("push %rbp \n");
+// asm ("mov %rsp, %rbp \n");
+// asm ("push %r15 \n");
+// asm ("mov %gs:0xd380, %r15 \n");
+// asm ("jmpq *0x295b(%rip) \n");
+
+// void subject (void);
+// asm (" .text");
+// asm (" .type    subject, @function");
+// asm ("subject: \n");
+// asm ("pushq %rbp \n");
+// asm ("movq %rsp, %rbp \n");
+// asm ("movq $0x0, -0x10(%rbp) \n");
+// asm ("movq -0x10(%rbp), %rax \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq %rax, -0x28(%rbp) \n");
+// asm ("movq $0x0, -0x20(%rbp) \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("jmp cmp \n");
+// asm ("loop: \n");
+// asm ("movq $0x0, -0x18(%rbp) \n");
+// asm ("inner_loop: \n");
+// asm ("addq $0x1, -0x18(%rbp) \n");
+// asm ("cmpq $0x3e7, -0x18(%rbp) \n");
+// asm ("jbe inner_loop \n");
+// asm ("addq $0x1, -0x20(%rbp) \n");
+// asm ("cmp: \n");
+// asm ("cmpq $0x3e7, -0x20(%rbp) \n");
+// // asm ("cmpq $0x30d40, -0x20(%rbp) \n");
+// // asm ("cmpq $100000, -0x20(%rbp) \n");
+// // asm ("cmpq $10000, -0x20(%rbp) \n");
+// asm ("jbe loop \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x10(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq -0x10(%rbp), %rdx \n");
+// asm ("sub %rax, %rdx \n");
+// // asm ("movq $0x7ff020901fd0, %rax \n");
+// // asm ("movq (%rax), %rdi \n"); //num of bp hit
+// // asm ("movq %rdx, %rax \n");
+// // asm ("add %rax, -0x28(%rbp) \n");
+// // asm ("movq -0x28(%rbp), %rdi \n");//store the cpu cycles in rdi
+// asm ("vmcall \n");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+void re_enter (void);
+asm (" .text");
+asm (" .type    re_enter, @function");
+asm ("re_enter: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d02(%rip), %rcx \n");
+asm ("movq 0x2d03(%rip), %rax \n");
+asm ("movq 0x2d04(%rip), %rsp \n");
+
+asm ("jmpq *0x2d06(%rip) \n");
+
+// asm ("push %rbp \n");
+// asm ("mov %rsp, %rbp \n");
+// asm ("push %r15 \n");
+// asm ("mov %gs:0xd380, %r15 \n");
+// asm ("jmpq *0x295b(%rip) \n");
+
+// void subject (void);
+// asm (" .text");
+// asm (" .type    subject, @function");
+// asm ("subject: \n");
+// asm ("pushq %rbp \n");
+// asm ("movq %rsp, %rbp \n");
+// asm ("movq $0x0, -0x10(%rbp) \n");
+// asm ("movq -0x10(%rbp), %rax \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq %rax, -0x28(%rbp) \n");
+// asm ("movq $0x0, -0x20(%rbp) \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("jmp cmp \n");
+// asm ("loop: \n");
+// asm ("movq $0x0, -0x18(%rbp) \n");
+// asm ("inner_loop: \n");
+// asm ("addq $0x1, -0x18(%rbp) \n");
+// asm ("cmpq $0x3e7, -0x18(%rbp) \n");
+// asm ("jbe inner_loop \n");
+// asm ("addq $0x1, -0x20(%rbp) \n");
+// asm ("cmp: \n");
+// asm ("cmpq $0x3e7, -0x20(%rbp) \n");
+// // asm ("cmpq $0x30d40, -0x20(%rbp) \n");
+// // asm ("cmpq $100000, -0x20(%rbp) \n");
+// // asm ("cmpq $10000, -0x20(%rbp) \n");
+// asm ("jbe loop \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x10(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq -0x10(%rbp), %rdx \n");
+// asm ("sub %rax, %rdx \n");
+// // asm ("movq $0x7ff020901fd0, %rax \n");
+// // asm ("movq (%rax), %rdi \n"); //num of bp hit
+// // asm ("movq %rdx, %rax \n");
+// // asm ("add %rax, -0x28(%rbp) \n");
+// // asm ("movq -0x28(%rbp), %rdi \n");//store the cpu cycles in rdi
+// asm ("vmcall \n");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+void re_enter (void);
+asm (" .text");
+asm (" .type    re_enter, @function");
+asm ("re_enter: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d02(%rip), %rcx \n");
+asm ("movq 0x2d03(%rip), %rax \n");
+asm ("movq 0x2d04(%rip), %rsp \n");
+
+asm ("jmpq *0x2d06(%rip) \n");
+
+// asm ("push %rbp \n");
+// asm ("mov %rsp, %rbp \n");
+// asm ("push %r15 \n");
+// asm ("mov %gs:0xd380, %r15 \n");
+// asm ("jmpq *0x295b(%rip) \n");
+
+// void subject (void);
+// asm (" .text");
+// asm (" .type    subject, @function");
+// asm ("subject: \n");
+// asm ("pushq %rbp \n");
+// asm ("movq %rsp, %rbp \n");
+// asm ("movq $0x0, -0x10(%rbp) \n");
+// asm ("movq -0x10(%rbp), %rax \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq %rax, -0x28(%rbp) \n");
+// asm ("movq $0x0, -0x20(%rbp) \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("jmp cmp \n");
+// asm ("loop: \n");
+// asm ("movq $0x0, -0x18(%rbp) \n");
+// asm ("inner_loop: \n");
+// asm ("addq $0x1, -0x18(%rbp) \n");
+// asm ("cmpq $0x3e7, -0x18(%rbp) \n");
+// asm ("jbe inner_loop \n");
+// asm ("addq $0x1, -0x20(%rbp) \n");
+// asm ("cmp: \n");
+// asm ("cmpq $0x3e7, -0x20(%rbp) \n");
+// // asm ("cmpq $0x30d40, -0x20(%rbp) \n");
+// // asm ("cmpq $100000, -0x20(%rbp) \n");
+// // asm ("cmpq $10000, -0x20(%rbp) \n");
+// asm ("jbe loop \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x10(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq -0x10(%rbp), %rdx \n");
+// asm ("sub %rax, %rdx \n");
+// // asm ("movq $0x7ff020901fd0, %rax \n");
+// // asm ("movq (%rax), %rdi \n"); //num of bp hit
+// // asm ("movq %rdx, %rax \n");
+// // asm ("add %rax, -0x28(%rbp) \n");
+// // asm ("movq -0x28(%rbp), %rdi \n");//store the cpu cycles in rdi
+// asm ("vmcall \n");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+void re_enter (void);
+asm (" .text");
+asm (" .type    re_enter, @function");
+asm ("re_enter: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d02(%rip), %rcx \n");
+asm ("movq 0x2d03(%rip), %rax \n");
+asm ("movq 0x2d04(%rip), %rsp \n");
+
+asm ("jmpq *0x2d06(%rip) \n");
+
+// asm ("push %rbp \n");
+// asm ("mov %rsp, %rbp \n");
+// asm ("push %r15 \n");
+// asm ("mov %gs:0xd380, %r15 \n");
+// asm ("jmpq *0x295b(%rip) \n");
+
+// void subject (void);
+// asm (" .text");
+// asm (" .type    subject, @function");
+// asm ("subject: \n");
+// asm ("pushq %rbp \n");
+// asm ("movq %rsp, %rbp \n");
+// asm ("movq $0x0, -0x10(%rbp) \n");
+// asm ("movq -0x10(%rbp), %rax \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq %rax, -0x28(%rbp) \n");
+// asm ("movq $0x0, -0x20(%rbp) \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("jmp cmp \n");
+// asm ("loop: \n");
+// asm ("movq $0x0, -0x18(%rbp) \n");
+// asm ("inner_loop: \n");
+// asm ("addq $0x1, -0x18(%rbp) \n");
+// asm ("cmpq $0x3e7, -0x18(%rbp) \n");
+// asm ("jbe inner_loop \n");
+// asm ("addq $0x1, -0x20(%rbp) \n");
+// asm ("cmp: \n");
+// asm ("cmpq $0x3e7, -0x20(%rbp) \n");
+// // asm ("cmpq $0x30d40, -0x20(%rbp) \n");
+// // asm ("cmpq $100000, -0x20(%rbp) \n");
+// // asm ("cmpq $10000, -0x20(%rbp) \n");
+// asm ("jbe loop \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x10(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq -0x10(%rbp), %rdx \n");
+// asm ("sub %rax, %rdx \n");
+// // asm ("movq $0x7ff020901fd0, %rax \n");
+// // asm ("movq (%rax), %rdi \n"); //num of bp hit
+// // asm ("movq %rdx, %rax \n");
+// // asm ("add %rax, -0x28(%rbp) \n");
+// // asm ("movq -0x28(%rbp), %rdi \n");//store the cpu cycles in rdi
+// asm ("vmcall \n");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+void re_enter (void);
+asm (" .text");
+asm (" .type    re_enter, @function");
+asm ("re_enter: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d02(%rip), %rcx \n");
+asm ("movq 0x2d03(%rip), %rax \n");
+asm ("movq 0x2d04(%rip), %rsp \n");
+
+asm ("jmpq *0x2d06(%rip) \n");
+
+// asm ("push %rbp \n");
+// asm ("mov %rsp, %rbp \n");
+// asm ("push %r15 \n");
+// asm ("mov %gs:0xd380, %r15 \n");
+// asm ("jmpq *0x295b(%rip) \n");
+
+// void subject (void);
+// asm (" .text");
+// asm (" .type    subject, @function");
+// asm ("subject: \n");
+// asm ("pushq %rbp \n");
+// asm ("movq %rsp, %rbp \n");
+// asm ("movq $0x0, -0x10(%rbp) \n");
+// asm ("movq -0x10(%rbp), %rax \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq %rax, -0x28(%rbp) \n");
+// asm ("movq $0x0, -0x20(%rbp) \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("jmp cmp \n");
+// asm ("loop: \n");
+// asm ("movq $0x0, -0x18(%rbp) \n");
+// asm ("inner_loop: \n");
+// asm ("addq $0x1, -0x18(%rbp) \n");
+// asm ("cmpq $0x3e7, -0x18(%rbp) \n");
+// asm ("jbe inner_loop \n");
+// asm ("addq $0x1, -0x20(%rbp) \n");
+// asm ("cmp: \n");
+// asm ("cmpq $0x3e7, -0x20(%rbp) \n");
+// // asm ("cmpq $0x30d40, -0x20(%rbp) \n");
+// // asm ("cmpq $100000, -0x20(%rbp) \n");
+// // asm ("cmpq $10000, -0x20(%rbp) \n");
+// asm ("jbe loop \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x10(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq -0x10(%rbp), %rdx \n");
+// asm ("sub %rax, %rdx \n");
+// // asm ("movq $0x7ff020901fd0, %rax \n");
+// // asm ("movq (%rax), %rdi \n"); //num of bp hit
+// // asm ("movq %rdx, %rax \n");
+// // asm ("add %rax, -0x28(%rbp) \n");
+// // asm ("movq -0x28(%rbp), %rdi \n");//store the cpu cycles in rdi
+// asm ("vmcall \n");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+void re_enter (void);
+asm (" .text");
+asm (" .type    re_enter, @function");
+asm ("re_enter: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d02(%rip), %rcx \n");
+asm ("movq 0x2d03(%rip), %rax \n");
+asm ("movq 0x2d04(%rip), %rsp \n");
+
+asm ("jmpq *0x2d06(%rip) \n");
+
+// asm ("push %rbp \n");
+// asm ("mov %rsp, %rbp \n");
+// asm ("push %r15 \n");
+// asm ("mov %gs:0xd380, %r15 \n");
+// asm ("jmpq *0x295b(%rip) \n");
+
+// void subject (void);
+// asm (" .text");
+// asm (" .type    subject, @function");
+// asm ("subject: \n");
+// asm ("pushq %rbp \n");
+// asm ("movq %rsp, %rbp \n");
+// asm ("movq $0x0, -0x10(%rbp) \n");
+// asm ("movq -0x10(%rbp), %rax \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq %rax, -0x28(%rbp) \n");
+// asm ("movq $0x0, -0x20(%rbp) \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("jmp cmp \n");
+// asm ("loop: \n");
+// asm ("movq $0x0, -0x18(%rbp) \n");
+// asm ("inner_loop: \n");
+// asm ("addq $0x1, -0x18(%rbp) \n");
+// asm ("cmpq $0x3e7, -0x18(%rbp) \n");
+// asm ("jbe inner_loop \n");
+// asm ("addq $0x1, -0x20(%rbp) \n");
+// asm ("cmp: \n");
+// asm ("cmpq $0x3e7, -0x20(%rbp) \n");
+// // asm ("cmpq $0x30d40, -0x20(%rbp) \n");
+// // asm ("cmpq $100000, -0x20(%rbp) \n");
+// // asm ("cmpq $10000, -0x20(%rbp) \n");
+// asm ("jbe loop \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x10(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq -0x10(%rbp), %rdx \n");
+// asm ("sub %rax, %rdx \n");
+// // asm ("movq $0x7ff020901fd0, %rax \n");
+// // asm ("movq (%rax), %rdi \n"); //num of bp hit
+// // asm ("movq %rdx, %rax \n");
+// // asm ("add %rax, -0x28(%rbp) \n");
+// // asm ("movq -0x28(%rbp), %rdi \n");//store the cpu cycles in rdi
+// asm ("vmcall \n");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+void re_enter (void);
+asm (" .text");
+asm (" .type    re_enter, @function");
+asm ("re_enter: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d02(%rip), %rcx \n");
+asm ("movq 0x2d03(%rip), %rax \n");
+asm ("movq 0x2d04(%rip), %rsp \n");
+
+asm ("jmpq *0x2d06(%rip) \n");
+
+// asm ("push %rbp \n");
+// asm ("mov %rsp, %rbp \n");
+// asm ("push %r15 \n");
+// asm ("mov %gs:0xd380, %r15 \n");
+// asm ("jmpq *0x295b(%rip) \n");
+
+// void subject (void);
+// asm (" .text");
+// asm (" .type    subject, @function");
+// asm ("subject: \n");
+// asm ("pushq %rbp \n");
+// asm ("movq %rsp, %rbp \n");
+// asm ("movq $0x0, -0x10(%rbp) \n");
+// asm ("movq -0x10(%rbp), %rax \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq %rax, -0x28(%rbp) \n");
+// asm ("movq $0x0, -0x20(%rbp) \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("jmp cmp \n");
+// asm ("loop: \n");
+// asm ("movq $0x0, -0x18(%rbp) \n");
+// asm ("inner_loop: \n");
+// asm ("addq $0x1, -0x18(%rbp) \n");
+// asm ("cmpq $0x3e7, -0x18(%rbp) \n");
+// asm ("jbe inner_loop \n");
+// asm ("addq $0x1, -0x20(%rbp) \n");
+// asm ("cmp: \n");
+// asm ("cmpq $0x3e7, -0x20(%rbp) \n");
+// // asm ("cmpq $0x30d40, -0x20(%rbp) \n");
+// // asm ("cmpq $100000, -0x20(%rbp) \n");
+// // asm ("cmpq $10000, -0x20(%rbp) \n");
+// asm ("jbe loop \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x10(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq -0x10(%rbp), %rdx \n");
+// asm ("sub %rax, %rdx \n");
+// // asm ("movq $0x7ff020901fd0, %rax \n");
+// // asm ("movq (%rax), %rdi \n"); //num of bp hit
+// // asm ("movq %rdx, %rax \n");
+// // asm ("add %rax, -0x28(%rbp) \n");
+// // asm ("movq -0x28(%rbp), %rdi \n");//store the cpu cycles in rdi
+// asm ("vmcall \n");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+void re_enter (void);
+asm (" .text");
+asm (" .type    re_enter, @function");
+asm ("re_enter: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d02(%rip), %rcx \n");
+asm ("movq 0x2d03(%rip), %rax \n");
+asm ("movq 0x2d04(%rip), %rsp \n");
+
+asm ("jmpq *0x2d06(%rip) \n");
+
+// asm ("push %rbp \n");
+// asm ("mov %rsp, %rbp \n");
+// asm ("push %r15 \n");
+// asm ("mov %gs:0xd380, %r15 \n");
+// asm ("jmpq *0x295b(%rip) \n");
+
+// void subject (void);
+// asm (" .text");
+// asm (" .type    subject, @function");
+// asm ("subject: \n");
+// asm ("pushq %rbp \n");
+// asm ("movq %rsp, %rbp \n");
+// asm ("movq $0x0, -0x10(%rbp) \n");
+// asm ("movq -0x10(%rbp), %rax \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq %rax, -0x28(%rbp) \n");
+// asm ("movq $0x0, -0x20(%rbp) \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("jmp cmp \n");
+// asm ("loop: \n");
+// asm ("movq $0x0, -0x18(%rbp) \n");
+// asm ("inner_loop: \n");
+// asm ("addq $0x1, -0x18(%rbp) \n");
+// asm ("cmpq $0x3e7, -0x18(%rbp) \n");
+// asm ("jbe inner_loop \n");
+// asm ("addq $0x1, -0x20(%rbp) \n");
+// asm ("cmp: \n");
+// asm ("cmpq $0x3e7, -0x20(%rbp) \n");
+// // asm ("cmpq $0x30d40, -0x20(%rbp) \n");
+// // asm ("cmpq $100000, -0x20(%rbp) \n");
+// // asm ("cmpq $10000, -0x20(%rbp) \n");
+// asm ("jbe loop \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x10(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq -0x10(%rbp), %rdx \n");
+// asm ("sub %rax, %rdx \n");
+// // asm ("movq $0x7ff020901fd0, %rax \n");
+// // asm ("movq (%rax), %rdi \n"); //num of bp hit
+// // asm ("movq %rdx, %rax \n");
+// // asm ("add %rax, -0x28(%rbp) \n");
+// // asm ("movq -0x28(%rbp), %rdi \n");//store the cpu cycles in rdi
+// asm ("vmcall \n");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+uu//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+void re_enter (void);
+asm (" .text");
+asm (" .type    re_enter, @function");
+asm ("re_enter: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d02(%rip), %rcx \n");
+asm ("movq 0x2d03(%rip), %rax \n");
+asm ("movq 0x2d04(%rip), %rsp \n");
+
+asm ("jmpq *0x2d06(%rip) \n");
+
+// asm ("push %rbp \n");
+// asm ("mov %rsp, %rbp \n");
+// asm ("push %r15 \n");
+// asm ("mov %gs:0xd380, %r15 \n");
+// asm ("jmpq *0x295b(%rip) \n");
+
+// void subject (void);
+// asm (" .text");
+// asm (" .type    subject, @function");
+// asm ("subject: \n");
+// asm ("pushq %rbp \n");
+// asm ("movq %rsp, %rbp \n");
+// asm ("movq $0x0, -0x10(%rbp) \n");
+// asm ("movq -0x10(%rbp), %rax \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq %rax, -0x28(%rbp) \n");
+// asm ("movq $0x0, -0x20(%rbp) \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x8(%rbp) \n");
+// asm ("jmp cmp \n");
+// asm ("loop: \n");
+// asm ("movq $0x0, -0x18(%rbp) \n");
+// asm ("inner_loop: \n");
+// asm ("addq $0x1, -0x18(%rbp) \n");
+// asm ("cmpq $0x3e7, -0x18(%rbp) \n");
+// asm ("jbe inner_loop \n");
+// asm ("addq $0x1, -0x20(%rbp) \n");
+// asm ("cmp: \n");
+// asm ("cmpq $0x3e7, -0x20(%rbp) \n");
+// // asm ("cmpq $0x30d40, -0x20(%rbp) \n");
+// // asm ("cmpq $100000, -0x20(%rbp) \n");
+// // asm ("cmpq $10000, -0x20(%rbp) \n");
+// asm ("jbe loop \n");
+// asm ("rdtsc \n");
+// asm ("movq %rax, -0x10(%rbp) \n");
+// asm ("movq -0x8(%rbp), %rax \n");
+// asm ("movq -0x10(%rbp), %rdx \n");
+// asm ("sub %rax, %rdx \n");
+// // asm ("movq $0x7ff020901fd0, %rax \n");
+// // asm ("movq (%rax), %rdi \n"); //num of bp hit
+// // asm ("movq %rdx, %rax \n");
+// // asm ("add %rax, -0x28(%rbp) \n");
+// // asm ("movq -0x28(%rbp), %rdi \n");//store the cpu cycles in rdi
+// asm ("vmcall \n");
+// 
+// 
+// 
+// 
+// 
+uu//0x7ff020902fe8: target rip
+//0x7ff020902fe0: target rsp
+//0x7ff020902fd8: rax
+//0x7ff020902fd0: rcx
+//0x7ff020902fc8: addr of store_context
+//remember to modify the addr of f_trampoline and re_enter in ../control/hello.c
+//remember to modify the addr of first_exit and second_exit in imee.c
+
+void f_trampoline (void);
+asm (" .text");
+asm (" .type    f_trampoline, @function");
+asm ("f_trampoline: \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("movq 0x2d4d(%rip), %rcx \n");
+asm ("movq 0x2d4e(%rip), %rax \n");
+asm ("movq 0x2d4f(%rip), %rsp \n");
+// asm ("vmcall \n");
+// asm ("movq 0x29b4(%rip), %r10 \n");
+// asm ("movq $0xffffffff81067a70, %rdx \n");
+// asm ("vmcall \n");
+// asm ("movq (%rdx), %rdi \n");
+// asm ("movq 0x8(%rdx), %rsi \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d51(%rip) \n");
+
+/* TODO: pass ana_stack & ana_handler into here */
+void first_exit (void);
+asm (" .text");
+asm (" .type    first_exit, @function");
+asm ("first_exit: \n");
+// asm ("vmcall \n");
+// asm ("pushf; \n\t");
+// asm ("popq %rcx; \n\t");
+// asm ("movq (%rsp), %rax; \n\t");
+// asm ("addq $0x8, %rsp; \n\t");
+asm ("popq %rax; \n\t");
+asm ("movq %rcx, 0x2d31(%rip) \n");
+asm ("movq %rax, 0x2d32(%rip) \n");
+asm ("movq %rsp, 0x2d33(%rip) \n");
+// asm ("movq $0xffffffff8108fd59, %rax \n");//save the next instruction in 0x7ff020902fe8
+// asm ("movq %rax, 0x2986(%rip) \n");//save the next instruction in 0x7ff020902fe8
+asm ("movq $0x0, %rax \n");
+asm ("movq $0x0, %rcx \n");
+asm ("vmfunc \n");
+// asm ("vmcall \n");
+asm ("jmpq *0x2d04(%rip) \n");//jump to store_context
+// asm ("vmcall \n");
+// asm ("REX.W ljmp *0x199b(%rip) \n");
+
+// 

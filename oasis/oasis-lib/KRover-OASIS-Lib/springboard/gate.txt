@@ -1,0 +1,328 @@
+
+gate.so:     file format elf64-x86-64
+
+
+Disassembly of section .note.gnu.build-id:
+
+0000000000000190 <.note.gnu.build-id>:
+ 190:	04 00                	add    $0x0,%al
+ 192:	00 00                	add    %al,(%rax)
+ 194:	14 00                	adc    $0x0,%al
+ 196:	00 00                	add    %al,(%rax)
+ 198:	03 00                	add    (%rax),%eax
+ 19a:	00 00                	add    %al,(%rax)
+ 19c:	47                   	rex.RXB
+ 19d:	4e 55                	rex.WRX push %rbp
+ 19f:	00 3c 1f             	add    %bh,(%rdi,%rbx,1)
+ 1a2:	f7 68 4c             	imull  0x4c(%rax)
+ 1a5:	50                   	push   %rax
+ 1a6:	5b                   	pop    %rbx
+ 1a7:	a7                   	cmpsl  %es:(%rdi),%ds:(%rsi)
+ 1a8:	d5                   	(bad)  
+ 1a9:	df a6 f0 59 18 e3    	fbld   -0x1ce7a610(%rsi)
+ 1af:	45 2a f6             	sub    %r14b,%r14b
+ 1b2:	e0 99                	loopne 14d <entry_gate-0x114>
+
+Disassembly of section .gnu.hash:
+
+00000000000001b8 <.gnu.hash>:
+ 1b8:	03 00                	add    (%rax),%eax
+ 1ba:	00 00                	add    %al,(%rax)
+ 1bc:	01 00                	add    %eax,(%rax)
+ 1be:	00 00                	add    %al,(%rax)
+ 1c0:	01 00                	add    %eax,(%rax)
+ 1c2:	00 00                	add    %al,(%rax)
+ 1c4:	06                   	(bad)  
+ 1c5:	00 00                	add    %al,(%rax)
+ 1c7:	00 88 40 20 01 00    	add    %cl,0x12040(%rax)
+ 1cd:	00 00                	add    %al,(%rax)
+ 1cf:	08 01                	or     %al,(%rcx)
+ 1d1:	00 00                	add    %al,(%rax)
+ 1d3:	00 03                	add    %al,(%rbx)
+ 1d5:	00 00                	add    %al,(%rax)
+ 1d7:	00 00                	add    %al,(%rax)
+ 1d9:	00 00                	add    %al,(%rax)
+ 1db:	00 42 45             	add    %al,0x45(%rdx)
+ 1de:	d5                   	(bad)  
+ 1df:	ec                   	in     (%dx),%al
+ 1e0:	bb e3 92 7c d9       	mov    $0xd97c92e3,%ebx
+ 1e5:	71 58                	jno    23f <entry_gate-0x22>
+ 1e7:	1c                   	.byte 0x1c
+
+Disassembly of section .dynsym:
+
+00000000000001e8 <.dynsym>:
+	...
+ 200:	01 00                	add    %eax,(%rax)
+ 202:	00 00                	add    %al,(%rax)
+ 204:	10 00                	adc    %al,(%rax)
+ 206:	07                   	(bad)  
+ 207:	00 00                	add    %al,(%rax)
+ 209:	10 20                	adc    %ah,(%rax)
+	...
+ 217:	00 14 00             	add    %dl,(%rax,%rax,1)
+ 21a:	00 00                	add    %al,(%rax)
+ 21c:	10 00                	adc    %al,(%rax)
+ 21e:	07                   	(bad)  
+ 21f:	00 00                	add    %al,(%rax)
+ 221:	10 20                	adc    %ah,(%rax)
+	...
+ 22f:	00 08                	add    %cl,(%rax)
+ 231:	00 00                	add    %al,(%rax)
+ 233:	00 10                	add    %dl,(%rax)
+ 235:	00 07                	add    %al,(%rdi)
+ 237:	00 00                	add    %al,(%rax)
+ 239:	10 20                	adc    %ah,(%rax)
+	...
+
+Disassembly of section .dynstr:
+
+0000000000000248 <.dynstr>:
+ 248:	00 5f 65             	add    %bl,0x65(%rdi)
+ 24b:	64 61                	fs (bad) 
+ 24d:	74 61                	je     2b0 <ret_exit_gate+0x1e>
+ 24f:	00 5f 5f             	add    %bl,0x5f(%rdi)
+ 252:	62 73                	(bad)  
+ 254:	73 5f                	jae    2b5 <ret_exit_gate+0x23>
+ 256:	73 74                	jae    2cc <pf_exit+0x6>
+ 258:	61                   	(bad)  
+ 259:	72 74                	jb     2cf <pf_exit+0x9>
+ 25b:	00 5f 65             	add    %bl,0x65(%rdi)
+ 25e:	6e                   	outsb  %ds:(%rsi),(%dx)
+ 25f:	64                   	fs
+	...
+
+Disassembly of section .text:
+
+0000000000000261 <entry_gate>:
+ 261:	48 c7 c0 00 00 00 00 	mov    $0x0,%rax
+ 268:	48 c7 c1 00 00 00 00 	mov    $0x0,%rcx
+ 26f:	0f 01 d4             	vmfunc 
+ 272:	48 8b 0d 5f 5d 00 00 	mov    0x5d5f(%rip),%rcx        # 5fd8 <db_exit_gate+0x5c16>
+ 279:	48 8b 05 60 5d 00 00 	mov    0x5d60(%rip),%rax        # 5fe0 <db_exit_gate+0x5c1e>
+ 280:	ff 25 62 5d 00 00    	jmpq   *0x5d62(%rip)        # 5fe8 <db_exit_gate+0x5c26>
+ 286:	90                   	nop
+ 287:	90                   	nop
+ 288:	90                   	nop
+ 289:	90                   	nop
+ 28a:	90                   	nop
+ 28b:	90                   	nop
+ 28c:	90                   	nop
+ 28d:	90                   	nop
+ 28e:	90                   	nop
+ 28f:	90                   	nop
+ 290:	90                   	nop
+ 291:	90                   	nop
+
+0000000000000292 <ret_exit_gate>:
+ 292:	48 89 0d 3f 5d 00 00 	mov    %rcx,0x5d3f(%rip)        # 5fd8 <db_exit_gate+0x5c16>
+ 299:	48 89 05 40 5d 00 00 	mov    %rax,0x5d40(%rip)        # 5fe0 <db_exit_gate+0x5c1e>
+ 2a0:	48 c7 c0 00 00 00 00 	mov    $0x0,%rax
+ 2a7:	48 c7 c1 09 00 00 00 	mov    $0x9,%rcx
+ 2ae:	0f 01 d4             	vmfunc 
+ 2b1:	ff 25 11 5d 00 00    	jmpq   *0x5d11(%rip)        # 5fc8 <db_exit_gate+0x5c06>
+ 2b7:	90                   	nop
+ 2b8:	90                   	nop
+ 2b9:	90                   	nop
+ 2ba:	90                   	nop
+ 2bb:	90                   	nop
+ 2bc:	90                   	nop
+ 2bd:	90                   	nop
+ 2be:	90                   	nop
+ 2bf:	90                   	nop
+ 2c0:	90                   	nop
+ 2c1:	90                   	nop
+ 2c2:	90                   	nop
+ 2c3:	90                   	nop
+ 2c4:	90                   	nop
+ 2c5:	90                   	nop
+
+00000000000002c6 <pf_exit>:
+ 2c6:	48 89 0d 0b 5d 00 00 	mov    %rcx,0x5d0b(%rip)        # 5fd8 <db_exit_gate+0x5c16>
+ 2cd:	48 89 05 0c 5d 00 00 	mov    %rax,0x5d0c(%rip)        # 5fe0 <db_exit_gate+0x5c1e>
+ 2d4:	48 c7 c0 00 00 00 00 	mov    $0x0,%rax
+ 2db:	48 c7 c1 09 00 00 00 	mov    $0x9,%rcx
+ 2e2:	0f 01 d4             	vmfunc 
+ 2e5:	48 8b 04 24          	mov    (%rsp),%rax
+ 2e9:	48 8b 5c 24 08       	mov    0x8(%rsp),%rbx
+ 2ee:	48 8b 4c 24 20       	mov    0x20(%rsp),%rcx
+ 2f3:	0f 01 c1             	vmcall 
+ 2f6:	ff 25 cd 5c 00 00    	jmpq   *0x5ccd(%rip)        # 5fc9 <db_exit_gate+0x5c07>
+ 2fc:	90                   	nop
+
+00000000000002fd <sysret_exit_gate>:
+ 2fd:	48 89 0d d4 5c 00 00 	mov    %rcx,0x5cd4(%rip)        # 5fd8 <db_exit_gate+0x5c16>
+ 304:	48 89 05 d5 5c 00 00 	mov    %rax,0x5cd5(%rip)        # 5fe0 <db_exit_gate+0x5c1e>
+ 30b:	48 c7 c0 00 00 00 00 	mov    $0x0,%rax
+ 312:	48 c7 c1 09 00 00 00 	mov    $0x9,%rcx
+ 319:	0f 01 d4             	vmfunc 
+ 31c:	ff 25 ae 5c 00 00    	jmpq   *0x5cae(%rip)        # 5fd0 <db_exit_gate+0x5c0e>
+ 322:	90                   	nop
+ 323:	90                   	nop
+ 324:	90                   	nop
+ 325:	90                   	nop
+ 326:	90                   	nop
+ 327:	90                   	nop
+ 328:	90                   	nop
+ 329:	90                   	nop
+ 32a:	90                   	nop
+ 32b:	90                   	nop
+ 32c:	90                   	nop
+ 32d:	90                   	nop
+ 32e:	90                   	nop
+ 32f:	90                   	nop
+ 330:	90                   	nop
+ 331:	90                   	nop
+
+0000000000000332 <int3_exit_gate>:
+ 332:	48 89 0d 9f 5c 00 00 	mov    %rcx,0x5c9f(%rip)        # 5fd8 <db_exit_gate+0x5c16>
+ 339:	48 89 05 a0 5c 00 00 	mov    %rax,0x5ca0(%rip)        # 5fe0 <db_exit_gate+0x5c1e>
+ 340:	48 c7 c0 00 00 00 00 	mov    $0x0,%rax
+ 347:	48 c7 c1 09 00 00 00 	mov    $0x9,%rcx
+ 34e:	0f 01 d4             	vmfunc 
+ 351:	ff 25 51 5c 00 00    	jmpq   *0x5c51(%rip)        # 5fa8 <db_exit_gate+0x5be6>
+ 357:	90                   	nop
+ 358:	90                   	nop
+ 359:	90                   	nop
+ 35a:	90                   	nop
+ 35b:	90                   	nop
+ 35c:	90                   	nop
+ 35d:	90                   	nop
+ 35e:	90                   	nop
+ 35f:	90                   	nop
+ 360:	90                   	nop
+ 361:	90                   	nop
+ 362:	90                   	nop
+ 363:	90                   	nop
+ 364:	90                   	nop
+ 365:	90                   	nop
+
+0000000000000366 <syscall_exit_gate>:
+ 366:	48 c7 c0 00 00 00 00 	mov    $0x0,%rax
+ 36d:	48 c7 c1 09 00 00 00 	mov    $0x9,%rcx
+ 374:	0f 01 d4             	vmfunc 
+ 377:	ff 25 43 5c 00 00    	jmpq   *0x5c43(%rip)        # 5fc0 <db_exit_gate+0x5bfe>
+ 37d:	90                   	nop
+ 37e:	90                   	nop
+ 37f:	90                   	nop
+ 380:	90                   	nop
+ 381:	90                   	nop
+ 382:	90                   	nop
+ 383:	90                   	nop
+ 384:	90                   	nop
+ 385:	90                   	nop
+ 386:	90                   	nop
+ 387:	90                   	nop
+ 388:	90                   	nop
+ 389:	90                   	nop
+ 38a:	90                   	nop
+ 38b:	90                   	nop
+ 38c:	90                   	nop
+
+000000000000038d <ve_exit_gate>:
+ 38d:	48 89 0d 44 5c 00 00 	mov    %rcx,0x5c44(%rip)        # 5fd8 <db_exit_gate+0x5c16>
+ 394:	48 89 05 45 5c 00 00 	mov    %rax,0x5c45(%rip)        # 5fe0 <db_exit_gate+0x5c1e>
+ 39b:	48 c7 c0 00 00 00 00 	mov    $0x0,%rax
+ 3a2:	48 c7 c1 09 00 00 00 	mov    $0x9,%rcx
+ 3a9:	0f 01 d4             	vmfunc 
+ 3ac:	ff 25 ee 5b 00 00    	jmpq   *0x5bee(%rip)        # 5fa0 <db_exit_gate+0x5bde>
+ 3b2:	90                   	nop
+ 3b3:	90                   	nop
+ 3b4:	90                   	nop
+ 3b5:	90                   	nop
+ 3b6:	90                   	nop
+ 3b7:	90                   	nop
+ 3b8:	90                   	nop
+ 3b9:	90                   	nop
+ 3ba:	90                   	nop
+ 3bb:	90                   	nop
+ 3bc:	90                   	nop
+ 3bd:	90                   	nop
+ 3be:	90                   	nop
+ 3bf:	90                   	nop
+ 3c0:	90                   	nop
+ 3c1:	90                   	nop
+
+00000000000003c2 <db_exit_gate>:
+ 3c2:	48 89 0d 0f 5c 00 00 	mov    %rcx,0x5c0f(%rip)        # 5fd8 <db_exit_gate+0x5c16>
+ 3c9:	48 89 05 10 5c 00 00 	mov    %rax,0x5c10(%rip)        # 5fe0 <db_exit_gate+0x5c1e>
+ 3d0:	48 c7 c0 00 00 00 00 	mov    $0x0,%rax
+ 3d7:	48 c7 c1 09 00 00 00 	mov    $0x9,%rcx
+ 3de:	0f 01 d4             	vmfunc 
+ 3e1:	ff 25 b1 5b 00 00    	jmpq   *0x5bb1(%rip)        # 5f98 <db_exit_gate+0x5bd6>
+ 3e7:	90                   	nop
+ 3e8:	90                   	nop
+ 3e9:	90                   	nop
+ 3ea:	90                   	nop
+ 3eb:	90                   	nop
+ 3ec:	90                   	nop
+ 3ed:	90                   	nop
+ 3ee:	90                   	nop
+ 3ef:	90                   	nop
+ 3f0:	90                   	nop
+ 3f1:	90                   	nop
+ 3f2:	90                   	nop
+ 3f3:	90                   	nop
+ 3f4:	90                   	nop
+ 3f5:	90                   	nop
+ 3f6:	90                   	nop
+
+Disassembly of section .dynamic:
+
+0000000000200f50 <_DYNAMIC>:
+  200f50:	f5                   	cmc    
+  200f51:	fe                   	(bad)  
+  200f52:	ff 6f 00             	ljmp   *0x0(%rdi)
+  200f55:	00 00                	add    %al,(%rax)
+  200f57:	00 b8 01 00 00 00    	add    %bh,0x1(%rax)
+  200f5d:	00 00                	add    %al,(%rax)
+  200f5f:	00 05 00 00 00 00    	add    %al,0x0(%rip)        # 200f65 <_DYNAMIC+0x15>
+  200f65:	00 00                	add    %al,(%rax)
+  200f67:	00 48 02             	add    %cl,0x2(%rax)
+  200f6a:	00 00                	add    %al,(%rax)
+  200f6c:	00 00                	add    %al,(%rax)
+  200f6e:	00 00                	add    %al,(%rax)
+  200f70:	06                   	(bad)  
+  200f71:	00 00                	add    %al,(%rax)
+  200f73:	00 00                	add    %al,(%rax)
+  200f75:	00 00                	add    %al,(%rax)
+  200f77:	00 e8                	add    %ch,%al
+  200f79:	01 00                	add    %eax,(%rax)
+  200f7b:	00 00                	add    %al,(%rax)
+  200f7d:	00 00                	add    %al,(%rax)
+  200f7f:	00 0a                	add    %cl,(%rdx)
+  200f81:	00 00                	add    %al,(%rax)
+  200f83:	00 00                	add    %al,(%rax)
+  200f85:	00 00                	add    %al,(%rax)
+  200f87:	00 19                	add    %bl,(%rcx)
+  200f89:	00 00                	add    %al,(%rax)
+  200f8b:	00 00                	add    %al,(%rax)
+  200f8d:	00 00                	add    %al,(%rax)
+  200f8f:	00 0b                	add    %cl,(%rbx)
+  200f91:	00 00                	add    %al,(%rax)
+  200f93:	00 00                	add    %al,(%rax)
+  200f95:	00 00                	add    %al,(%rax)
+  200f97:	00 18                	add    %bl,(%rax)
+	...
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	47                   	rex.RXB
+   1:	43                   	rex.XB
+   2:	43 3a 20             	rex.XB cmp (%r8),%spl
+   5:	28 55 62             	sub    %dl,0x62(%rbp)
+   8:	75 6e                	jne    78 <entry_gate-0x1e9>
+   a:	74 75                	je     81 <entry_gate-0x1e0>
+   c:	20 37                	and    %dh,(%rdi)
+   e:	2e 35 2e 30 2d 33    	cs xor $0x332d302e,%eax
+  14:	75 62                	jne    78 <entry_gate-0x1e9>
+  16:	75 6e                	jne    86 <entry_gate-0x1db>
+  18:	74 75                	je     8f <entry_gate-0x1d2>
+  1a:	31 7e 31             	xor    %edi,0x31(%rsi)
+  1d:	38 2e                	cmp    %ch,(%rsi)
+  1f:	30 34 29             	xor    %dh,(%rcx,%rbp,1)
+  22:	20 37                	and    %dh,(%rdi)
+  24:	2e                   	cs
+  25:	35                   	.byte 0x35
+  26:	2e 30 00             	xor    %al,%cs:(%rax)

@@ -1,0 +1,167 @@
+
+syscall_gate.so:     file format elf64-x86-64
+
+
+Disassembly of section .note.gnu.build-id:
+
+0000000000000190 <.note.gnu.build-id>:
+ 190:	04 00                	add    $0x0,%al
+ 192:	00 00                	add    %al,(%rax)
+ 194:	14 00                	adc    $0x0,%al
+ 196:	00 00                	add    %al,(%rax)
+ 198:	03 00                	add    (%rax),%eax
+ 19a:	00 00                	add    %al,(%rax)
+ 19c:	47                   	rex.RXB
+ 19d:	4e 55                	rex.WRX push %rbp
+ 19f:	00 da                	add    %bl,%dl
+ 1a1:	b7 98                	mov    $0x98,%bh
+ 1a3:	2f                   	(bad)  
+ 1a4:	60                   	(bad)  
+ 1a5:	a5                   	movsl  %ds:(%rsi),%es:(%rdi)
+ 1a6:	57                   	push   %rdi
+ 1a7:	5a                   	pop    %rdx
+ 1a8:	42 ee                	rex.X out %al,(%dx)
+ 1aa:	c8 c6 6e 08          	enterq $0x6ec6,$0x8
+ 1ae:	58                   	pop    %rax
+ 1af:	4b                   	rex.WXB
+ 1b0:	25                   	.byte 0x25
+ 1b1:	f0                   	lock
+ 1b2:	bd                   	.byte 0xbd
+ 1b3:	67                   	addr32
+
+Disassembly of section .gnu.hash:
+
+00000000000001b8 <.gnu.hash>:
+ 1b8:	03 00                	add    (%rax),%eax
+ 1ba:	00 00                	add    %al,(%rax)
+ 1bc:	01 00                	add    %eax,(%rax)
+ 1be:	00 00                	add    %al,(%rax)
+ 1c0:	01 00                	add    %eax,(%rax)
+ 1c2:	00 00                	add    %al,(%rax)
+ 1c4:	06                   	(bad)  
+ 1c5:	00 00                	add    %al,(%rax)
+ 1c7:	00 88 40 20 01 00    	add    %cl,0x12040(%rax)
+ 1cd:	00 00                	add    %al,(%rax)
+ 1cf:	08 01                	or     %al,(%rcx)
+ 1d1:	00 00                	add    %al,(%rax)
+ 1d3:	00 03                	add    %al,(%rbx)
+ 1d5:	00 00                	add    %al,(%rax)
+ 1d7:	00 00                	add    %al,(%rax)
+ 1d9:	00 00                	add    %al,(%rax)
+ 1db:	00 42 45             	add    %al,0x45(%rdx)
+ 1de:	d5                   	(bad)  
+ 1df:	ec                   	in     (%dx),%al
+ 1e0:	bb e3 92 7c d9       	mov    $0xd97c92e3,%ebx
+ 1e5:	71 58                	jno    23f <syscall_exit-0x22>
+ 1e7:	1c                   	.byte 0x1c
+
+Disassembly of section .dynsym:
+
+00000000000001e8 <.dynsym>:
+	...
+ 200:	01 00                	add    %eax,(%rax)
+ 202:	00 00                	add    %al,(%rax)
+ 204:	10 00                	adc    %al,(%rax)
+ 206:	07                   	(bad)  
+ 207:	00 00                	add    %al,(%rax)
+ 209:	10 20                	adc    %ah,(%rax)
+	...
+ 217:	00 14 00             	add    %dl,(%rax,%rax,1)
+ 21a:	00 00                	add    %al,(%rax)
+ 21c:	10 00                	adc    %al,(%rax)
+ 21e:	07                   	(bad)  
+ 21f:	00 00                	add    %al,(%rax)
+ 221:	10 20                	adc    %ah,(%rax)
+	...
+ 22f:	00 08                	add    %cl,(%rax)
+ 231:	00 00                	add    %al,(%rax)
+ 233:	00 10                	add    %dl,(%rax)
+ 235:	00 07                	add    %al,(%rdi)
+ 237:	00 00                	add    %al,(%rax)
+ 239:	10 20                	adc    %ah,(%rax)
+	...
+
+Disassembly of section .dynstr:
+
+0000000000000248 <.dynstr>:
+ 248:	00 5f 65             	add    %bl,0x65(%rdi)
+ 24b:	64 61                	fs (bad) 
+ 24d:	74 61                	je     2b0 <syscall_exit+0x4f>
+ 24f:	00 5f 5f             	add    %bl,0x5f(%rdi)
+ 252:	62 73                	(bad)  
+ 254:	73 5f                	jae    2b5 <syscall_exit+0x54>
+ 256:	73 74                	jae    2cc <syscall_exit+0x6b>
+ 258:	61                   	(bad)  
+ 259:	72 74                	jb     2cf <syscall_exit+0x6e>
+ 25b:	00 5f 65             	add    %bl,0x65(%rdi)
+ 25e:	6e                   	outsb  %ds:(%rsi),(%dx)
+ 25f:	64                   	fs
+	...
+
+Disassembly of section .text:
+
+0000000000000261 <syscall_exit>:
+ 261:	48 89 0d 70 ad ff ff 	mov    %rcx,-0x5290(%rip)        # ffffffffffffafd8 <__bss_start+0xffffffffffdf9fd8>
+ 268:	48 89 05 71 ad ff ff 	mov    %rax,-0x528f(%rip)        # ffffffffffffafe0 <__bss_start+0xffffffffffdf9fe0>
+ 26f:	48 8d 05 f0 50 ff ff 	lea    -0xaf10(%rip),%rax        # ffffffffffff5366 <__bss_start+0xffffffffffdf4366>
+ 276:	ff e0                	jmpq   *%rax
+
+Disassembly of section .dynamic:
+
+0000000000200f50 <_DYNAMIC>:
+  200f50:	f5                   	cmc    
+  200f51:	fe                   	(bad)  
+  200f52:	ff 6f 00             	ljmp   *0x0(%rdi)
+  200f55:	00 00                	add    %al,(%rax)
+  200f57:	00 b8 01 00 00 00    	add    %bh,0x1(%rax)
+  200f5d:	00 00                	add    %al,(%rax)
+  200f5f:	00 05 00 00 00 00    	add    %al,0x0(%rip)        # 200f65 <_DYNAMIC+0x15>
+  200f65:	00 00                	add    %al,(%rax)
+  200f67:	00 48 02             	add    %cl,0x2(%rax)
+  200f6a:	00 00                	add    %al,(%rax)
+  200f6c:	00 00                	add    %al,(%rax)
+  200f6e:	00 00                	add    %al,(%rax)
+  200f70:	06                   	(bad)  
+  200f71:	00 00                	add    %al,(%rax)
+  200f73:	00 00                	add    %al,(%rax)
+  200f75:	00 00                	add    %al,(%rax)
+  200f77:	00 e8                	add    %ch,%al
+  200f79:	01 00                	add    %eax,(%rax)
+  200f7b:	00 00                	add    %al,(%rax)
+  200f7d:	00 00                	add    %al,(%rax)
+  200f7f:	00 0a                	add    %cl,(%rdx)
+  200f81:	00 00                	add    %al,(%rax)
+  200f83:	00 00                	add    %al,(%rax)
+  200f85:	00 00                	add    %al,(%rax)
+  200f87:	00 19                	add    %bl,(%rcx)
+  200f89:	00 00                	add    %al,(%rax)
+  200f8b:	00 00                	add    %al,(%rax)
+  200f8d:	00 00                	add    %al,(%rax)
+  200f8f:	00 0b                	add    %cl,(%rbx)
+  200f91:	00 00                	add    %al,(%rax)
+  200f93:	00 00                	add    %al,(%rax)
+  200f95:	00 00                	add    %al,(%rax)
+  200f97:	00 18                	add    %bl,(%rax)
+	...
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	47                   	rex.RXB
+   1:	43                   	rex.XB
+   2:	43 3a 20             	rex.XB cmp (%r8),%spl
+   5:	28 55 62             	sub    %dl,0x62(%rbp)
+   8:	75 6e                	jne    78 <syscall_exit-0x1e9>
+   a:	74 75                	je     81 <syscall_exit-0x1e0>
+   c:	20 37                	and    %dh,(%rdi)
+   e:	2e 35 2e 30 2d 33    	cs xor $0x332d302e,%eax
+  14:	75 62                	jne    78 <syscall_exit-0x1e9>
+  16:	75 6e                	jne    86 <syscall_exit-0x1db>
+  18:	74 75                	je     8f <syscall_exit-0x1d2>
+  1a:	31 7e 31             	xor    %edi,0x31(%rsi)
+  1d:	38 2e                	cmp    %ch,(%rsi)
+  1f:	30 34 29             	xor    %dh,(%rcx,%rbp,1)
+  22:	20 37                	and    %dh,(%rdi)
+  24:	2e                   	cs
+  25:	35                   	.byte 0x35
+  26:	2e 30 00             	xor    %al,%cs:(%rax)
