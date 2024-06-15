@@ -1,42 +1,14 @@
 #ifndef IMEE
 #define IMEE
 #include <linux/list.h>
-/* Jiaqi */
-// #include <linux/kvm_types.h>
-/* /Jiaqi */
+
+#define KROVER_OASIS_LIB_PATH "/<FULL-PATH-TO>/oasis/oasis-lib/KRover-OASIS-Lib/"
+
 #define DBG(fmt, ...) \
     do {printk ("%s(): " fmt, __func__, ##__VA_ARGS__); } while (0)
 
-/*
-#define DBG(fmt, ...) 
-*/
-// #define DBG(fmt, ...) 
-
 #define ERR(fmt, ...) \
     do {printk ("%s(): " fmt, __func__, ##__VA_ARGS__); } while (0)
-
-// struct arg_blk
-// {
-//     unsigned long vcpu_fd;
-//     unsigned long syscall_flag;
-//     unsigned long rip;
-//     unsigned long rsp;
-//     unsigned long rax;
-//     unsigned long rdi;
-//     unsigned long rsi;
-//     unsigned long rdx;
-//     unsigned long r10;
-//     unsigned long r8;
-//     unsigned long r9;
-//     unsigned long r11;
-//     unsigned long rcx;
-//     unsigned long ret_rax;
-//     unsigned long sstub_entry;
-//     unsigned long hard_cr3;
-// };
-// /* Jiaqi */
-// // extern struct arg_blk* imee_arg;
-// extern struct arg_blk imee_arg;
 
 struct arg_blk
 {
@@ -379,12 +351,7 @@ extern unsigned long UK_OFFSET;
 // #define onsite_pf_addr 0x7f100090d000UL//its data page locates at +0x1000
 #define onsite_pf_addr (user_start + ONSITE_PF_OFFSET)
 
-//pp-s
-//#define KROVER_OASIS_LIB_PATH "/home/beverly/KRover/oasis-lib/KRover-OASIS-Lib/"
-#define KROVER_OASIS_LIB_PATH "/home/neo/smu/oasis/oasis-lib/KRover-OASIS-Lib/"
-//pp-e
 #define SIG_WRAP_PATH KROVER_OASIS_LIB_PATH "signal_toy/sig_wrap/sig_wrap.so"
-
 #define SIG_HANDLE_PATH (KROVER_OASIS_LIB_PATH "signal_toy/dummy_handler/hello")
 #define PF_STUB_PATH (KROVER_OASIS_LIB_PATH "pf_stub/pf.so")
 #define DEBUG_HANDLER_GATE_PATH (KROVER_OASIS_LIB_PATH "springboard/gate.so")

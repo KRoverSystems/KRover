@@ -23,7 +23,10 @@ OASIS needs to run on a bare-metal machine with the customzed kernel specified a
 3. gcc:7.5.0
 4. [Install kvm and its related virt-manager toolchain](https://linuxize.com/post/how-to-install-kvm-on-ubuntu-18-04/)
 5. [Install a VM with linux 5.4.X using virt-manager](https://www.tecmint.com/create-virtual-machines-in-kvm-using-virt-manager/4/)
-6. [Clone the KRover repo](git clone https://github.com/KRoverSystems/KRover.git)
+6. Clone the KRover repo on to host.
+```
+git clone https://github.com/KRoverSystems/KRover.git
+```
 
 ## Compiling and installing the OASIS kernel.
 
@@ -31,6 +34,11 @@ OASIS needs to run on a bare-metal machine with the customzed kernel specified a
 ```
 sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev
 ```
+
+### Update oais-lib path in imee.h
+Go to oasis/kernel/linux-hwe-5.3.18/virt/kvm/imee.h
+Update the KROVER_OASIS_LIB_PATH constant.
+
 ### configuring the kernel
 confirm *CONFIG_X86_SMAP is not set* in the .config file. if *CONFIG_X86_SMAP = y*, change it to *CONFIG_X86_SMAP = n*.
 ```
@@ -41,7 +49,7 @@ load and save the .config file, then exit.
 ```
 make menuconfig 
 ```
-## compile the linux kernel as debian packages
+### compile the linux kernel as debian packages
 ```
 make -j8 deb-pkg
 cd ../ && ls -la
