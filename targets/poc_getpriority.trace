@@ -1,0 +1,497 @@
+target exported 
+nme_fsbase: 7f200000d640. 
+gdt base: 7f1000902000. 
+idx: 170, entry: 1c1c2067. 
+rax: 0
+rbx: 0 rcx: 0 rdx: 0 rdi: 0 rsi: 0 r8: 0 r9: 0 r10: 0 
+rip: 0 
+rsp: 0 
+ei_shar_args at: 0x7f88000907000 
+t_rsp0 stack: fffffe0000192000. 
+t_rsp1 stack: ffffc900000ac000. 
+onsite receive request. 
+ei_shar_args->rip: 55555555466f, rsp: 7fffffffdff0. 
+ei_shar_args at: 0x7f1000907000 
+ei_shar_args->gs_base: 0 
+ei_shar_args->msr_kernel_gs_base: ffff88807d980000 
+target rip: 0x555555554672, target code: 48e5894855c35d90. 
+syscall entry at: 0xffffffff81c00010, code: 2524894865f8010f. 
+redirected page start from :0x7f0000498000. ends : 0x7f00004a0000. 
+at processAt
+at beginAnalysis
+ 
+kernel symbol map is created, 122037 entries
+kernel module object symbol map is created, 59 entries
+before before install probe at: ffffffff810ba900. 
+update crt_idx as: 0. i: 0, crt_max_redir_idx: 0, tempAddr: ffffffff810ba000. 
+new_va: 7f0000499000. ker_addr: ffffffff810ba000. 
+about to issue hyper call to redirect page: ffffffff810ba000 .
+before install probe at: ffffffff810ba900. 
+install probe at: ffffffff810ba900. 
+int3 BP triggered ...
+at processAt
+at beginAnalysis
+ 
+last int3 probe has been removed
+syscall idx : 140
+case:140
+######### at start of processFuncyion, rip ffffffff810ba900
+
+-------------------instruction 0 adr : ffffffff810ba900
+idx :10ba900 ,in :nop 0x0(%rax,%rax,1)
+insn_count: 1
+at analyztsHub
+
+-------------------instruction 1 adr : ffffffff810ba905
+idx :10ba905 ,in :push %rbp
+insn_count: 2
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 2 adr : ffffffff810ba906
+idx :10ba906 ,in :mov %rsp,%rbp
+insn_count: 3
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 3 adr : ffffffff810ba909
+idx :10ba909 ,in :push %r15
+insn_count: 4
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 4 adr : ffffffff810ba90b
+idx :10ba90b ,in :push %r14
+insn_count: 5
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 5 adr : ffffffff810ba90d
+idx :10ba90d ,in :push %r13
+insn_count: 6
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 6 adr : ffffffff810ba90f
+idx :10ba90f ,in :push %r12
+insn_count: 7
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 7 adr : ffffffff810ba911
+idx :10ba911 ,in :push %rbx
+insn_count: 8
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 8 adr : ffffffff810ba912
+idx :10ba912 ,in :mov $0x1bbc0,%r13
+insn_count: 9
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 9 adr : ffffffff810ba91b
+idx :10ba91b ,in :sub $0x8,%rsp
+insn_count: 10
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 10 adr : ffffffff810ba91f
+idx :10ba91f ,in :mov 0x70(%rdi),%rbx
+insn_count: 11
+sym mem ...
+dispatching for SIE
+
+0@8,which_rdi; 
+at analyztsHub
+
+-------------------instruction 11 adr : ffffffff810ba923
+idx :10ba923 ,in :mov 0x68(%rdi),%r15
+insn_count: 12
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 12 adr : ffffffff810ba927
+idx :10ba927 ,in :mov 0xa70(%r13),%r12
+insn_count: 13
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 13 adr : ffffffff810ba92e
+idx :10ba92e ,in :cmp $0x2,%ebx
+insn_count: 14
+sym reg ...
+dispatching for SIE
+
+at analyztsHub
+
+-------------------instruction 14 adr : ffffffff810ba931
+idx :10ba931 ,in :jnbe 0x234(%rip)
+insn_count: 15
+constraints : 
+Ugt(Extract(which_rdi, 0, 4),0x2)
+Symbolic branch, resolved to be : 0
+Sym branch: bExecute: 0
+at analyztsHub
+
+-------------------instruction 15 adr : ffffffff810ba937
+idx :10ba937 ,in :mov $0x82a05080,%rdi
+insn_count: 16
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 16 adr : ffffffff810ba93e
+idx :10ba93e ,in :call 0xa3a7f2(%rip)
+insn_count: 17
+at analyztsHub
+
+-------------------instruction 17 adr : ffffffff81af5130
+idx :1af5130 ,in :nop 0x0(%rax,%rax,1)
+insn_count: 18
+at analyztsHub
+
+-------------------instruction 18 adr : ffffffff81af5135
+idx :1af5135 ,in :push %rbp
+insn_count: 19
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 19 adr : ffffffff81af5136
+idx :1af5136 ,in :mov %rsp,%rbp
+insn_count: 20
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 20 adr : ffffffff81af5139
+idx :1af5139 ,in :mov $0x200,%eax
+insn_count: 21
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 21 adr : ffffffff81af513e
+idx :1af513e ,in :xadd %eax,(%rdi)
+insn_count: 22
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 22 adr : ffffffff81af5142
+idx :1af5142 ,in :test $0x1ff,%eax
+insn_count: 23
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 23 adr : ffffffff81af5147
+idx :1af5147 ,in :jnz 0x4(%rip)
+insn_count: 24
+at analyztsHub
+
+-------------------instruction 24 adr : ffffffff81af5149
+idx :1af5149 ,in :pop %rbp
+insn_count: 25
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 25 adr : ffffffff81af514a
+idx :1af514a ,in :ret near (%rsp)
+insn_count: 26
+at analyztsHub
+
+-------------------instruction 26 adr : ffffffff810ba943
+idx :10ba943 ,in :cmp $0x1,%ebx
+insn_count: 27
+sym reg ...
+dispatching for SIE
+
+at analyztsHub
+
+-------------------instruction 27 adr : ffffffff810ba946
+idx :10ba946 ,in :jz 0x119(%rip)
+insn_count: 28
+constraints : 
+Equal(Sub(Extract(which_rdi, 0, 4),0x1))
+Symbolic branch, resolved to be : 1
+Sym branch: bExecute: 1
+at analyztsHub
+
+-------------------instruction 28 adr : ffffffff810baa5f
+idx :10baa5f ,in :test %r15d,%r15d
+insn_count: 29
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 29 adr : ffffffff810baa62
+idx :10baa62 ,in :jnz 0xe6(%rip)
+insn_count: 30
+at analyztsHub
+
+-------------------instruction 30 adr : ffffffff810baa68
+idx :10baa68 ,in :mov 0xad8(%r13),%rax
+insn_count: 31
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 31 adr : ffffffff810baa6f
+idx :10baa6f ,in :mov 0x170(%rax),%rax
+insn_count: 32
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 32 adr : ffffffff810baa76
+idx :10baa76 ,in :test %rax,%rax
+insn_count: 33
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 33 adr : ffffffff810baa79
+idx :10baa79 ,in :jz 0xfffffee0(%rip)
+insn_count: 34
+at analyztsHub
+
+-------------------instruction 34 adr : ffffffff810baa7f
+idx :10baa7f ,in :mov 0x18(%rax),%rax
+insn_count: 35
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 35 adr : ffffffff810baa83
+idx :10baa83 ,in :test %rax,%rax
+insn_count: 36
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 36 adr : ffffffff810baa86
+idx :10baa86 ,in :jz 0xfffffed3(%rip)
+insn_count: 37
+at analyztsHub
+
+-------------------instruction 37 adr : ffffffff810baa8c
+idx :10baa8c ,in :sub $0x958,%rax
+insn_count: 38
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 38 adr : ffffffff810baa92
+idx :10baa92 ,in :mov %rax,%rsi
+insn_count: 39
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 39 adr : ffffffff810baa95
+idx :10baa95 ,in :jz 0xfffffec4(%rip)
+insn_count: 40
+at analyztsHub
+
+-------------------instruction 40 adr : ffffffff810baa9b
+idx :10baa9b ,in :mov $0xfffffffd,%r15
+insn_count: 41
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 41 adr : ffffffff810baaa2
+idx :10baaa2 ,in :mov $0x14,%edi
+insn_count: 42
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 42 adr : ffffffff810baaa7
+idx :10baaa7 ,in :mov 0xad8(%rsi),%rcx
+insn_count: 43
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 43 adr : ffffffff810baaae
+idx :10baaae ,in :mov 0x10(%rcx),%rax
+insn_count: 44
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 44 adr : ffffffff810baab2
+idx :10baab2 ,in :add $0x10,%rcx
+insn_count: 45
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 45 adr : ffffffff810baab6
+idx :10baab6 ,in :cmp %rax,%rcx
+insn_count: 46
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 46 adr : ffffffff810baab9
+idx :10baab9 ,in :lea 0xfffff678(%rax),%rdx
+insn_count: 47
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 47 adr : ffffffff810baac0
+idx :10baac0 ,in :jz 0x2a(%rip)
+insn_count: 48
+at analyztsHub
+
+-------------------instruction 48 adr : ffffffff810baac2
+idx :10baac2 ,in :mov 0x68(%rdx),%eax
+insn_count: 49
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 49 adr : ffffffff810baac5
+idx :10baac5 ,in :mov %rdi,%rbx
+insn_count: 50
+sym reg ...
+dispatching for SIE
+at analyztsHub
+
+-------------------instruction 50 adr : ffffffff810baac8
+idx :10baac8 ,in :sub $0x78,%eax
+insn_count: 51
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 51 adr : ffffffff810baacb
+idx :10baacb ,in :cwde 
+insn_count: 52
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 52 adr : ffffffff810baacd
+idx :10baacd ,in :sub %rax,%rbx
+insn_count: 53
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 53 adr : ffffffff810baad0
+idx :10baad0 ,in :mov 0x988(%rdx),%rax
+insn_count: 54
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 54 adr : ffffffff810baad7
+idx :10baad7 ,in :cmp %rbx,%r15
+insn_count: 55
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 55 adr : ffffffff810baada
+idx :10baada ,in :cmovnge %rbx,%r15
+insn_count: 56
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 56 adr : ffffffff810baade
+idx :10baade ,in :cmp %rax,%rcx
+insn_count: 57
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 57 adr : ffffffff810baae1
+idx :10baae1 ,in :lea 0xfffff678(%rax),%rdx
+insn_count: 58
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 58 adr : ffffffff810baae8
+idx :10baae8 ,in :jnz 0xffffffda(%rip)
+insn_count: 59
+at analyztsHub
+
+-------------------instruction 59 adr : ffffffff810baaea
+idx :10baaea ,in :mov 0x958(%rsi),%rax
+insn_count: 60
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 60 adr : ffffffff810baaf1
+idx :10baaf1 ,in :test %rax,%rax
+insn_count: 61
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 61 adr : ffffffff810baaf4
+idx :10baaf4 ,in :jz 0xfffffe6c(%rip)
+insn_count: 62
+at analyztsHub
+
+-------------------instruction 62 adr : ffffffff810ba960
+idx :10ba960 ,in :mov $0xfffffe00,%eax
+insn_count: 63
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 63 adr : ffffffff810ba965
+idx :10ba965 ,in :xadd %eax,0x194a713(%rip)
+insn_count: 64
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 64 adr : ffffffff810ba96d
+idx :10ba96d ,in :add $0x8,%rsp
+insn_count: 65
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 65 adr : ffffffff810ba971
+idx :10ba971 ,in :mov %r15,%rax
+insn_count: 66
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 66 adr : ffffffff810ba974
+idx :10ba974 ,in :pop %rbx
+insn_count: 67
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 67 adr : ffffffff810ba975
+idx :10ba975 ,in :pop %r12
+insn_count: 68
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 68 adr : ffffffff810ba977
+idx :10ba977 ,in :pop %r13
+insn_count: 69
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 69 adr : ffffffff810ba979
+idx :10ba979 ,in :pop %r14
+insn_count: 70
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 70 adr : ffffffff810ba97b
+idx :10ba97b ,in :pop %r15
+insn_count: 71
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 71 adr : ffffffff810ba97d
+idx :10ba97d ,in :pop %rbp
+insn_count: 72
+dispatching for CIE
+at analyztsHub
+
+-------------------instruction 72 adr : ffffffff810ba97e
+idx :10ba97e ,in :ret near (%rsp)
+insn_count: 73
+at analyztsHub
+
+End of SE ...
+path constraints : 
+LNot(Ugt(Extract(which_rdi, 0, 4),0x2))
+Equal(Sub(Extract(which_rdi, 0, 4),0x1))
+Ending execution ...
+kvm: 3
+vmfd: 4, vcpufd: 5. 
+vcpu size: 3000
+before KVM_GET_SUPPORTED_CPUID, set nent as 100. 
+
+KVM_GET_SUPPORTED_CPUID: return 0
+KVM_GET_SUPPORTED_CPUID, nent = 45
+
+000, xcr: 0x00000000, reserved: 0x00000000,  value: 0x0000000000000001
+KVM_SET_XCRS returns 0
+ready to run, hard_cr3: 0. 
+get guest context done !!!, sizeof arg_blk: 1a8
+child process id: 31866. 
+OASIS stop: 0, exit reason: 0. 
