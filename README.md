@@ -37,7 +37,7 @@ sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf
 
 ### Update oasis-lib path in imee.h
 Go to oasis/kernel/linux-hwe-5.3.18/virt/kvm/imee.h
-Update the KROVER_OASIS_LIB_PATH constant.
+Update the constant, KROVER_OASIS_LIB_PATH accordingly.
 
 ### configuring the kernel
 confirm *CONFIG_X86_SMAP is not set* in the .config file. if *CONFIG_X86_SMAP = y*, change it to *CONFIG_X86_SMAP = n*.
@@ -70,8 +70,8 @@ During boot procedure, remember to select Advanced options for ..., then select 
 ## Compiling and installing the k-loader
 
 ### Create a symbolic link to imee.h in kernel
-Go to oasis/k-loader/ and update the path in configure.sh
-execute configure.sh to create a symbolic link to imee.h
+Go to oasis/k-loader/configure.sh and update the path to kernel's imee.h accordingly. 
+execute configure.sh to create a symbolic link to imee.h .
 
 ### compile & install
 ```
@@ -90,4 +90,14 @@ cd build-glibc
 make -j6 CFLAGS="-O2 -U_FORTIFY_SOURCE -fno-stack-protector"
 make install
 ```
+
+## oasis-lib
+
+oasis-lib includes a collection of prebuilt binaries. These are a collection of gates that fascilitate EFI-execution flow switches(Eg: switch between a target kernel thread and KRover). Use the .so files as-is. Re-compiling may change the ofsets between certain functions( or the start offcet of a certain function) within a given .so file causing oasis to malfunction.
+
+## Build the launcher
+
+### Update KRover binary path
+Go to oasis/launcher/oasis-launcher.c and update the constant, KROVER_PATH accordingly.
+Executable KRover binary named "testtest" should be available in KRover/loader/ directory.
 
