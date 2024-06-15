@@ -35,7 +35,7 @@ git clone https://github.com/KRoverSystems/KRover.git
 sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev
 ```
 
-### Update oais-lib path in imee.h
+### Update oasis-lib path in imee.h
 Go to oasis/kernel/linux-hwe-5.3.18/virt/kvm/imee.h
 Update the KROVER_OASIS_LIB_PATH constant.
 
@@ -66,4 +66,28 @@ sudo dpkg -i linux-headers-5.3.18_5.3.18-1_amd64.deb
     
 ### reboot and enter into the new kernel 5.3.18
 During boot procedure, remember to select Advanced options for ..., then select 5.3.18 kernel, which is the modified oasis kernel we just installed.
+
+## Compiling and installing the k-loader
+
+### Create a symbolic link to imee.h in kernel
+Go to oasis/k-loader/ and update the path in configure.sh
+execute configure.sh to create a symbolic link to imee.h
+
+### compile & install
+```
+make && sudo insmod ld.ko
+```
+
+## Building and installing the u-loader (Customized linker)
+
+### Build then install
+```
+cd oasis/u-loader/
+mkdir build-glibc
+mkdir install
+cd build-glibc
+../glibc-2.27/configure --prefix=/<PATH-TO>/oasis/u-loader/install
+make -j6 CFLAGS="-O2 -U_FORTIFY_SOURCE -fno-stack-protector"
+make install
+```
 
