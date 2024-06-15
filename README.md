@@ -12,7 +12,7 @@ This package includes the following software packages.
 2.5 launcher : System launcher, launches oasis and KRover.
 
 # Instructions for system setup
-First step is to setup the OASIS infrastructure. 
+First step is to setup the OASIS infrastructure. If you need more information abount OASIS design, features and EFI, refer to our OASIS paper from SP21: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces".
 
 ## Platform
 OASIS needs to run on a bare-metal machine with the customzed kernel specified above. The target kernel which will be analyzed using KRover would be executed in a VM. We recomment a host machine with Ubuntu. If your current Ubuntu does not match with the following requirements or you do not want to disturb your current working environment, you can consider creating a new partition and installing a separate Ubuntu OS. Then your machine becomes a dual-boot Ubuntu system, do the following things in the new Ubuntu. It's also okay to skip the step if there is no conflict.
@@ -90,14 +90,25 @@ cd build-glibc
 make -j6 CFLAGS="-O2 -U_FORTIFY_SOURCE -fno-stack-protector"
 make install
 ```
-
 ## oasis-lib
 
-oasis-lib includes a collection of prebuilt binaries. These are a collection of gates that fascilitate EFI-execution flow switches(Eg: switch between a target kernel thread and KRover). Use the .so files as-is. Re-compiling may change the ofsets between certain functions( or the start offcet of a certain function) within a given .so file causing oasis to malfunction.
+oasis-lib includes a collection of prebuilt binaries in the form of .so files. These are a collection of gates that fascilitate EFI-execution flow switches(Eg: switch between a target kernel thread and KRover). Use the .so files as-is. Re-compiling may change the ofsets between certain functions( or the start offcet of a certain function) within a given .so file causing oasis to malfunction.
 
 ## Build the launcher
 
 ### Update KRover binary path
 Go to oasis/launcher/oasis-launcher.c and update the constant, KROVER_PATH accordingly.
 Executable KRover binary named "testtest" should be available in KRover/loader/ directory.
+Go to oasis/launcher/ and run compile.sh to generate the launcher binary.
+
+# Building KRover
+
+## Dependant libraries
+KRover uses dyninst for binary instruction dissassembly and Z3 for constraint evaluation.
+
+### Build dyninst
+
+Download dyninst (https://github.com/dyninst/dyninst)
+
+
 
