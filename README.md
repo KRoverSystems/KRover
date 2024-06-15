@@ -193,7 +193,7 @@ KRover executable binary named, testtest will be generated in KRover/loader/ dir
 This is a POC of how you can use KRover to symbolically execute a Linux syscall handler.
 
 ## 1. Build target
-We have included a POC target user space program, poc.c in the "targets" directory. Copy this into the target guest VM and build the poc.c
+We have included a POC target user space program, poc.c in the "poc" directory. Copy this into the target guest VM and build the poc.c
 ```
 gcc poc.c -o target
 ```
@@ -230,7 +230,7 @@ The analysis sequence enabled by the POC user analyzer is as follows.
 5. The POC analysis program("CAnalyze::beginAnalysis()" ) dispatches the target thread to thin controller("m_Thin->processFunction(addr)" ) for symbolic execution.
 6. Thin controller single steps the syscall handler and conducts symbolic execution.
 7. The POC analyzer terminates the analysis once the execution reaches the end of the syscall handler( See CAnalyze::onEndOfInsExec() ), and path constraints are provided for the user.
-8. A sample symbolic execution trace for the symbolic execution of the syscall handler of getpriority is available in target/poc_getpriority.trace .
+8. A sample symbolic execution trace for the symbolic execution of the syscall handler of getpriority is available in poc/poc_getpriority.trace .
 
 ## 3.6 Executing KRover
 Make sure to have the k-loader installed in advance (If not done already). The execution includes two sequential steps as follows.
