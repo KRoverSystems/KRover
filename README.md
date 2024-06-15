@@ -3,13 +3,15 @@ KRover is a Symbolic Execution Engine for Dynamic Kernel Analysis. This document
 
 # Included packages
 This package includes the following software packages.
-1. KRover: KRover symbolic execution engine.
-2. oasis : OASIS infrastructure on which KRover is executed. OASIS consists of the following components.
-2.1 kernel : A lnux kernel with modified KVM.
-2.2 k-loader : A LKM that acts as a kernel loader.
-2.3 u-loader : Modified libc to satisfy specific loading/address space requirements.
-2.4 oasis-lib : A collection of binaries enabling specific OASIS features such as EFI: execution flow instruentation.
-2.5 launcher : System launcher, launches oasis and KRover.
+### KRover: 
+1. KRover symbolic execution engine.
+### oasis
+OASIS infrastructure on which KRover is executed. OASIS consists of the following components.
+2. kernel : A lnux kernel with modified KVM.
+3. k-loader : A LKM that acts as a kernel loader.
+4. u-loader : Modified libc to satisfy specific loading/address space requirements.
+5. oasis-lib : A collection of binaries enabling specific OASIS features such as EFI: execution flow instruentation.
+6. launcher : System launcher, launches oasis and KRover.
 
 # Instructions for system setup
 First step is to setup the OASIS infrastructure. If you need more information abount OASIS design, features and EFI, refer to our OASIS paper from SP21: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces".
