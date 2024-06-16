@@ -1,5 +1,5 @@
 #  ⌘ KRover ⌘
-KRover is a Symbolic Execution Engine for Dynamic Kernel Analysis. A kernel analyst can develop a kernel analysis program on top of KRover and invokes the latter as a library. The program benefits from the following KRover features. 
+KRover is a Symbolic Execution Engine for Dynamic Kernel Analysis. A kernel analyst can develop a kernel analysis program on top of KRover and invoke the latter as a library. The program benefits from the following KRover features. 
 
 1. KRover takes a live kernel thread as input and functions without(necessarily) relying on the kernel source code. KRover neither
 instruments the kernel binary nor applies Dynamic Binary Translation (DBT).
