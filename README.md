@@ -4,11 +4,11 @@ KRover is a Symbolic Execution Engine for Dynamic Kernel Analysis. This document
 Happy KRoving !!!
 
 ## Included packages
-This package includes the following software packages.
+This includes the following software packages.
 ### KRover: 
 1. KRover: Symbolic execution engine.
 ### oasis: 
-KRover is executed in OASIS infrastructure. OASIS consists of the following components.
+KRover is executed on OASIS infrastructure. OASIS consists of the following components.
 
 2. kernel: A Linux kernel with modified KVM.
 3. k-loader: A LKM that acts as a kernel loader.
@@ -21,7 +21,7 @@ KRover is executed in OASIS infrastructure. OASIS consists of the following comp
 KRover executes on OASIS infrastructure. Thus, the first step is to set up the OASIS infrastructure. If you need more information about OASIS design and features, refer to our OASIS paper: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces(IEEE SP21)".
 
 ## 1. Platform
-OASIS needs to run on a bare-metal machine with the customized kernel specified above. The target kernel which will be analyzed using KRover would be executed in a VM. We recommend a host machine with Ubuntu. If your current Ubuntu does not match the following requirements or you do not want to disturb your current working environment, you can consider creating a new partition and installing a separate Ubuntu OS. Then your machine becomes a dual-boot Ubuntu system, do the following things in the new Ubuntu. It's also okay to skip the step if there is no conflict.
+OASIS needs to run on a bare-metal machine with the customized kernel specified above. The target kernel which will be analyzed using KRover would be executed in a VM. We recommend a host machine with Ubuntu. If your current Ubuntu does not match the following requirements or you do not want to disturb your current working environment, you can consider creating a new partition and installing a separate Ubuntu OS. Then your machine becomes a dual-boot Ubuntu system, do the following things in the new Ubuntu.
 
 ## 2. Requirements
 1. Host OS: Ubuntu 18.04; Kernel version: Linux 5.4.X.
@@ -58,7 +58,7 @@ sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf
 
 ### 5.2 Update oasis-lib path in imee.h
 Go to oasis/kernel/linux-hwe-5.3.18/virt/kvm/imee.h
-Update the constant, KROVER_OASIS_LIB_PATH accordingly.
+Update the constant, KROVER_OASIS_LIB_PATH accordingly. In this repo, the oasis-lib is available in oasis/oasis-lib/KRover-OASIS-Lib( See step 8 for more info.)
 
 ### 5.3 Configuring the kernel
 confirm *CONFIG_X86_SMAP is not set* in the .config file. if *CONFIG_X86_SMAP = y*, change it to *CONFIG_X86_SMAP = n*.
@@ -105,7 +105,7 @@ sudo update-grub2
 
 ### 6.1 Create a symbolic link to imee.h in kernel
 Go to oasis/k-loader/configure.sh and update the path to kernel's imee.h accordingly. 
-execute configure.sh to create a symbolic link to imee.h .
+Execute configure.sh to create a symbolic link to imee.h .
 
 ### 6.2 compile & install
 ```
@@ -120,7 +120,7 @@ cd oasis/u-loader/
 mkdir build-glibc
 mkdir install
 cd build-glibc
-../glibc-2.27/configure --prefix=/<PATH-TO>/oasis/u-loader/install
+../KRover-u-loader/configure --prefix=/<PATH-TO>/oasis/u-loader/install
 make -j`nproc` CFLAGS="-O2 -U_FORTIFY_SOURCE -fno-stack-protector"
 make install
 ```
@@ -140,7 +140,7 @@ sudo chmod +x /<PATH-TO>/oasis/oasis-lib/KRover-OASIS-Lib/springboard/data_page
 ### 9.1 Update KRover binary path
 Go to oasis/launcher/oasis-launcher.c and update the constant, KROVER_PATH accordingly.
 Once KRover is built later, an executable KRover binary named "testtest" will be available in KRover/loader/ directory.
-Go to oasis/launcher/ and run compile.sh to generate the launcher binary named, oasis-auncher.
+Go to oasis/launcher/ and run compile.sh to generate the launcher binary named, oasis-launcher.
 
 
 ## 10. Install dependent libraries for KRover
@@ -195,7 +195,7 @@ This is a POC of how you can use KRover to symbolically execute a Linux syscall 
 ## 1. Build target
 We have included a POC target user space program, poc.c in the "poc" directory. Copy this into the target guest VM and build the poc.c
 ```
-gcc poc.c -o target
+gcc -fno-stack-protector poc.c -o target
 ```
 
 ## 2. Extract syscall handler addresses from the guest VM
@@ -212,10 +212,10 @@ The following details are specific to the execution of the selected POC where we
 The user can leverage KRover as a library to write their own simple user analyzer. A POC analyzer to support the symbolic execution of getpriority is included in Analyze.cpp.
 
 ### 3.2 Selection of the syscall
-The sample user analyzer is included in Analyze.cpp, supports the symbolic execution of a selected system call. The user can select the syscall handler name in "void CAnalyze::setupScallAnalysis()". To support the POC, we have set the syscall handler name for get_priority by selecting the kernel symbol name "__x64_sys_getpriority" in "void  Analyze::setupScallAnalysis()". The corresponding VA of the syscall handler is available in KRover/stc-files/kern_syms.txt .
+The sample user analyzer included in Analyze.cpp, supports the symbolic execution of a selected system call. The user can select the syscall handler name in "CAnalyze::setupScallAnalysis()". To support the POC, we have set the syscall handler name for getpriority by selecting the corresponding kernel symbol name "__x64_sys_getpriority" in "Analyze::setupScallAnalysis()". The corresponding VA of the syscall handler is available in KRover/stc-files/kern_syms.txt .
 
 ### 3.3 Installation of the int3 breakpoint 
-The POC user analyzer installs an int3 breakpoint at the start of the getpriority syscall handler in bool CAnalyze::beginAnalysis(). The API, "InstallINT3Probe()" is used for this purpose.
+The POC user analyzer installs an int3 breakpoint at the start of the getpriority syscall handler in "CAnalyze::beginAnalysis()". The API, "InstallINT3Probe()" is used for this purpose.
 
 ### 3.4 Symbolization
 The POC user analyzer uses the "defineSymbolsForScalls()" API to symbolize some syscall arguments passed to the syscall handler of getpriority. KRover supports both register and memory symbols.
@@ -234,8 +234,7 @@ The analysis sequence enabled by the POC user analyzer is as follows.
 
 ## 3.6 Executing KRover
 Make sure to have the k-loader installed in advance (If not done already). The execution includes two sequential steps as follows.
-1. On the target VM, Execute the poc target program
-Go to the directory of the poc.c,
+1. On the target VM, Execute the poc target program. Go to the directory of the poc.c,
 ```
 ./target
 ```
