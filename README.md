@@ -1,6 +1,14 @@
 #  ⌘ KRover ⌘
-KRover is a Symbolic Execution Engine for Dynamic Kernel Analysis. This document will guide you through the setup of the necessary infrastructure and dependent systems needed for the execution of KRover. 
+KRover is a Symbolic Execution Engine for Dynamic Kernel Analysis. A kernel analyst can develop a kernel analysis program on top of KRover and invokes the latter as a library. The program benefits from the following KRover features. 
 
+1. KRover takes a live kernel thread as input and functions without(necessarily) relying on the kernel source code. KRover neither
+instruments the kernel binary nor applies Dynamic Binary Translation (DBT).
+2. The analysis program (including KRover) uses the same address space as the target kernel’s, with its binary instructions running on the CPU and referencing kernel memory using kernel virtual addresses e.g., mov %rax 0xffffffff12345678.
+3. The analysis program, like conventional dynamic analysis tools, has access to hardware features to control the target thread, such as using debug registers or INT3 probes.
+4. The analysis program is empowered by KRover to direct how the target thread runs: to “slide down" from one program point to another with native execution or to single-step with symbolic execution for close monitoring and analysis. The analysis program orchestrates the interleaving of these two modes.
+#
+These features make KRover amicable for those kernel analysis tasks which demand a binary level understanding of an execution flow. For more information, refer to "KRover: A Symbolic Execution Engine for Dynamic Kernel Analysis (ACM CCS23)", "KRoverFullPaper.pdf". This document will guide you through the setup of the necessary infrastructure and dependent systems needed for the execution of KRover.
+#
 Happy KRoving !!!
 
 ## Included packages
@@ -18,7 +26,7 @@ KRover is executed on OASIS infrastructure. OASIS consists of the following comp
 #
 #
 # ⌘ Instructions for system setup ⌘
-KRover executes on OASIS infrastructure. Thus, the first step is to set up the OASIS infrastructure. If you need more information about OASIS design and features, refer to our OASIS paper: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces(IEEE SP21)".
+KRover executes on OASIS infrastructure. Thus, the first step is to set up the OASIS infrastructure. If you need more information about OASIS design and features, refer to our OASIS paper: "A novel dynamic analysis infrastructure to instrument untrusted execution flow across user-kernel spaces (IEEE SP21)".
 
 ## 1. Platform
 OASIS needs to run on a bare-metal machine with the customized kernel specified above. The target kernel which will be analyzed using KRover would be executed in a VM. We recommend a host machine with Ubuntu. If your current Ubuntu does not match the following requirements or you do not want to disturb your current working environment, you can consider creating a new partition and installing a separate Ubuntu OS. Then your machine becomes a dual-boot Ubuntu system, do the following things in the new Ubuntu.
